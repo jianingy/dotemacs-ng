@@ -19,6 +19,7 @@
  '(kept-old-versions       5)
  '(version-control         t)               ;; use versioned backups
  '(enable-recursive-minibuffers t)
+ '(abbrev-file-name  (concat user-conf-dir "db/abbrev.el"))
  '(recentf-save-file (concat user-conf-dir "db/recentf.el"))
  '(nsm-settings-file (concat user-conf-dir "db/network-security.el"))
  '(ac-comphist-file (concat user-conf-dir "db/ac-comphist.el"))
@@ -49,8 +50,9 @@
   (message (concat "[config] backup directory is " temporary-directory))
   (unless (file-exists-p temporary-directory)
     (make-directory temporary-directory))
-  (custom-set-variables
-   '(backup-directory-alist `(("." . ,temporary-directory)))))
+  (setq
+   temporary-file-directory temporary-directory
+   backup-directory-alist `(("." . ,temporary-directory))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;

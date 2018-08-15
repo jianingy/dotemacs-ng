@@ -11,6 +11,18 @@
 (use-package sublime-themes
   :ensure t
   :if window-system
+  :after (company nlinum)
+  :custom-face
+  (company-tooltip ((t (:inherit default :foreground "white smoke" :background "#333"))))
+  (company-scrollbar-bg ((t (:background "#333"))))
+  (company-scrollbar-fg ((t (:background "deep sky blue"))))
+  (company-tooltip-annotation ((t (:foreground "white smoke"))))
+  (company-tooltip-annotation-selection ((t (:foreground "black"))))
+  (company-tooltip-selection ((t (:foreground "black" :background "deep sky blue"))))
+  (company-tooltip-common ((t (:foreground "orange"))))
+  (company-tooltip-common-selection ((t (:foreground "black"))))
+  (vertical-border ((t (:foreground "#333333"))))
+  (nlinum-current-line ((t (:foreground "orange"))))
   :init
   (defun nby/display-header-as-margin ()
     (unless (string-match "^\*" (buffer-name))
@@ -21,12 +33,23 @@
     (setq header-line-format "  "))
   (add-hook 'buffer-list-update-hook 'nby/display-header-as-margin)
   (add-hook 'emacs-startup-hook  'nby/display-header-as-margin)
-;             :hook ((buffer-list-update . nby/display-header-as-margin)
-;                    (emacs-startup . nby/display-header-as-margin))
-  :custom-face
-  (vertical-border ((t (:foreground "#333333"))))
   :config
   (load-theme 'spolsky t))
+
+(use-package color-theme
+  :ensure t
+  :if (not window-system)
+  :custom-face
+  (company-tooltip ((t (:inherit default :foreground "white smoke" :background "#333"))))
+  (company-scrollbar-bg ((t (:background "#333"))))
+  (company-scrollbar-fg ((t (:background "deep sky blue"))))
+  (company-tooltip-annotation ((t (:foreground "white smoke"))))
+  (company-tooltip-annotation-selection ((t (:foreground "black"))))
+  (company-tooltip-selection ((t (:foreground "black" :background "deep sky blue"))))
+  (company-tooltip-common ((t (:foreground "orange"))))
+  (company-tooltip-common-selection ((t (:foreground "black"))))
+  (nlinum-current-line ((t (:foreground "orange"))))
+  :config (load-theme 'hickey t))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -137,8 +160,6 @@
 
 (use-package nlinum
   :ensure t
-  :custom-face
-  (nlinum-current-line ((t (:foreground "orange"))))
   :config
   (setq nlinum-format "  %4d "
         nlinum-highlight-current-line t)
