@@ -154,7 +154,10 @@
 (use-package yasnippet
   :ensure yasnippet-bundle
   :diminish yas/minor-mode
+  :init
+  (add-to-list 'yas/root-directory (concat user-conf-dir "snippets"))
   :config
+  (yas/reload-all)
   (yas/global-mode 1))
 
 ;;; ends here
