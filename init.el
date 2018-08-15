@@ -7,6 +7,8 @@
   (setq debug-on-error t))
 
 ;; install use-package
+(setq package-archives '(("gnu"   . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+                         ("melpa" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
 (require 'package)
 (setq package-enable-at-startup nil)
 (package-initialize)
