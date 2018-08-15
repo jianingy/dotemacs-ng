@@ -108,7 +108,7 @@
 
 (use-package company-lsp
   :ensure t
-  :after (lsp-mode company)
+  :after (lsp-mode lsp-ui company)
   :bind (:map lsp-ui-mode-map
          ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
          ([remap xref-find-references] . lsp-ui-peek-find-references))

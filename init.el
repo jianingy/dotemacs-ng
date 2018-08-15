@@ -31,9 +31,7 @@
              :ensure t
              :init
              (setq load-dirs
-                   (concat (file-name-as-directory user-conf-dir) "conf.d"))
-             :config
-             (load-dirs))
+                   (concat (file-name-as-directory user-conf-dir) "conf.d")))
 
 ;; load local configuration
 (when user-local-file
