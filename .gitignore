@@ -1,0 +1,5 @@
+elpa
+db/*
+auto-save-list
+.python-environments
+*.elc
