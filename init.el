@@ -20,7 +20,7 @@
 
 
 ;; load my utilities: fix me
-(load "~/.emacs.d/site-lisp/nby/nby.el")
+(load (concat user-emacs-directory "site-lisp/nby/nby.el"))
 
 ;; load user settings
 (when user-info-file

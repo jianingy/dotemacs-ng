@@ -86,6 +86,7 @@
 (use-package company
   :ensure t
   :bind (:map company-active-map
+              ([tab] . company-complete-selection)
               ("C-n" . company-select-next)
               ("C-p" . company-select-previous))
   :config (global-company-mode))
@@ -124,6 +125,18 @@
   :ensure t
   :mode (("\\.yml\\'" . yaml-mode)
          ("\\.yaml\\'" . yaml-mode)))
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Language specific
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package haskell-mode
+  :ensure t
+  :mode ("\\.hs\\'"))
 
 
 
