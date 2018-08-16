@@ -7,8 +7,37 @@
 ;; Color Themes & Layout tuning
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package monokai-theme
+  :ensure t
+  :if window-system
+  :after (company nlinum)
+  :custom-face
+  (mode-line ((t (:box (:line-width 2 :color "#49483E" :style nil)))))
+  (company-tooltip ((t (:inherit default :foreground "white smoke" :background "#333"))))
+  (company-scrollbar-bg ((t (:background "#333"))))
+  (company-scrollbar-fg ((t (:background "deep sky blue"))))
+  (company-tooltip-annotation ((t (:foreground "white smoke"))))
+  (company-tooltip-annotation-selection ((t (:foreground "black"))))
+  (company-tooltip-selection ((t (:foreground "black" :background "deep sky blue"))))
+  (company-tooltip-common ((t (:foreground "orange"))))
+  (company-tooltip-common-selection ((t (:foreground "black"))))
+  (vertical-border ((t (:foreground "#333333"))))
+  (nlinum-current-line ((t (:foreground "orange"))))
+  :init
+  (defun nby/display-header-as-margin ()
+    (unless (string-match "^\*" (buffer-name))
+      (let ((background (face-attribute 'default :background)))
+        (set-face-attribute 'header-line nil
+                            :background background
+                            :box nil)))
+    (setq header-line-format "  "))
+  (add-hook 'buffer-list-update-hook 'nby/display-header-as-margin)
+  (add-hook 'emacs-startup-hook  'nby/display-header-as-margin)
+  :config
+  (load-theme 'monokai t))
 
 (use-package sublime-themes
+  :disabled
   :ensure t
   :if window-system
   :after (company nlinum)
@@ -147,6 +176,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package smart-mode-line
+  :disabled
   :ensure t
   :init (setq sml/no-confirm-load-theme t
               sml/theme 'respectful)
@@ -193,4 +223,14 @@
 (use-package uniquify
   :init (setq uniquify-buffer-name-style 'forward))
 
+
+(use-package dimmer
+  :ensure t
+  :diminish t
+  :init (setq dimmer-exclusion-regexp "\\*helm")
+  :config (dimmer-mode))
+
+(use-package telephone-line
+  :ensure t
+  :config (telephone-line-mode 1))
 ;;; ends here

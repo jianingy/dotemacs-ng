@@ -2,9 +2,13 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package markdown-mode+
+(use-package markdown-mode
   :mode (("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
+  :ensure t)
+
+(use-package markdown-mode+
+  :after markdown-mode
   :ensure t)
 
 (use-package livedown

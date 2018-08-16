@@ -160,4 +160,17 @@
   (yas/reload-all)
   (yas/global-mode 1))
 
+
+(use-package pangu-spacing
+  :disabled
+  :ensure t
+  :init
+  (add-hook 'org-mode-hook
+            '(lambda ()
+               (nby/local-set-variables 'pangu-spacing-real-insert-separtor t)))
+  (add-hook 'markdown-mode-hook
+            '(lambda ()
+               (nby/local-set-variables 'pangu-spacing-real-insert-separtor t)))
+  :config (global-pangu-spacing-mode 1))
+
 ;;; ends here
