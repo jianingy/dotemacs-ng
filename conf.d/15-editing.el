@@ -160,6 +160,12 @@
   (yas/global-mode 1))
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Others
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (use-package pangu-spacing
   :disabled
   :ensure t
@@ -171,5 +177,9 @@
             '(lambda ()
                (nby/local-set-variables 'pangu-spacing-real-insert-separtor t)))
   :config (global-pangu-spacing-mode 1))
+
+(use-package buffer-move
+  :ensure t
+  :commands (buf-move-up buf-move-down buf-move-left buf-moveright))
 
 ;;; ends here

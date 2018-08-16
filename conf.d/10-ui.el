@@ -88,6 +88,7 @@
 
 
 (set-language-environment 'UTF-8)
+(menu-bar-mode -1)
 (custom-set-variables
  '(custom-file (nby/find-local-config '(".usercustom.el" "_usercustom.el")))
  '(current-language-environment "UTF-8")
@@ -233,5 +234,22 @@
   :ensure t
   :config (telephone-line-mode 1))
 
-(menu-bar-mode -1)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Sidebar
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package ov :ensure t)
+(use-package frame-local :ensure t)
+(use-package icons-in-terminal
+  :load-path
+  (lambda () (expand-file-name "~/.local/share/icons-in-terminal")))
+(use-package sidebar
+  :requires (ov frame-local icons-in-terminal)
+  :bind (("C-x C-b" . sidebar-buffers-open)
+         ("C-x t" . sidebar-open))
+  :init (setq sidebar-show-hidden-files nil)
+  :load-path "site-lisp/sidebar")
+
 ;;; ends here
