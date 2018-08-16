@@ -4,26 +4,25 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; basic behaviors
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(custom-set-variables
- '(backup-by-copying t)
- '(tab-width               8)               ;; default tab width
- '(fill-column            79)               ;; default column width
- '(mouse-yank-at-point     t)               ;; dont insert at mouse point
- '(kill-ring-max         512)               ;; size of killing ring
- '(delete-old-versions     t)
- '(kept-new-versions      10)
- '(kept-old-versions       5)
- '(version-control         t)               ;; use versioned backups
- '(enable-recursive-minibuffers t)
- '(abbrev-file-name  (concat user-conf-dir "db/abbrev.el"))
- '(recentf-save-file (concat user-conf-dir "db/recentf.el"))
- '(nsm-settings-file (concat user-conf-dir "db/network-security.el"))
- '(ac-comphist-file (concat user-conf-dir "db/ac-comphist.el"))
- '(frame-title-format  "emacs@%b"))     ;; display buffer name at title bar
+;; bsic behavior
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq
+ backup-by-copying                 t
+ tab-width                         8               ;; default tab width
+ fill-column                      79               ;; default column width
+ mouse-yank-at-point               t               ;; dont insert at mouse point
+ kill-ring-max                   512               ;; size of killing ring
+ delete-old-versions               t
+ kept-new-versions                10
+ kept-old-versions                 5
+ version-control                   t               ;; use versioned backups
+ enable-recursive-minibuffers      t
+ abbrev-file-name              (concat user-conf-dir "db/abbrev.el")
+ recentf-save-file             (concat user-conf-dir "db/recentf.el")
+ nsm-settings-file             (concat user-conf-dir "db/network-security.el")
+ ac-comphist-file              (concat user-conf-dir "db/ac-comphist.el")
+ frame-title-format  "emacs@%b")     ;; display buffer name at title bar
 
 ;; move mouse pointer away while cursor is near
 (mouse-avoidance-mode 'animate)
