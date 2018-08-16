@@ -223,7 +223,6 @@
 (use-package uniquify
   :init (setq uniquify-buffer-name-style 'forward))
 
-
 (use-package dimmer
   :ensure t
   :diminish t
@@ -233,4 +232,6 @@
 (use-package telephone-line
   :ensure t
   :config (telephone-line-mode 1))
+
+(menu-bar-mode -1)
 ;;; ends here
