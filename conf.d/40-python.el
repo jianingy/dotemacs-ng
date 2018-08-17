@@ -38,7 +38,7 @@
   :hook (flycheck-mode . flycheck-pycheckers-setup)
   :init (add-hook 'python-mode-hook
                   (lambda () (nby/local-set-variables
-                              '(flycheck-checker     'python-flake8))))
+                              '(flycheck-checker 'python-flake8))))
   :config (flycheck-add-mode 'python-flake8 'python-mode))
 
 
@@ -56,7 +56,7 @@
   (add-hook 'python-mode-hook
             (lambda () (add-to-list 'company-backends 'company-jedi))))
 
-(use-package lsp-python 
+(use-package lsp-python
   :ensure t
   :after lsp-mode
   :hook (python-mode . lsp-python-enable))

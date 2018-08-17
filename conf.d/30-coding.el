@@ -16,6 +16,7 @@
 
 ;; syntax check
 (use-package flycheck
+  :commands (flycheck-add-mode)
   :ensure t
   :bind (("C-c n" . next-error))
   :hook (after-init . global-flycheck-mode))
