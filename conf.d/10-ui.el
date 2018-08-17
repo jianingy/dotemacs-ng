@@ -246,9 +246,8 @@
   :load-path
   (lambda () (expand-file-name "~/.local/share/icons-in-terminal")))
 (use-package sidebar
-  :requires (ov frame-local icons-in-terminal)
-  :bind (("C-x C-b" . sidebar-buffers-open)
-         ("C-x t" . sidebar-open))
+  :requires (ov frame-local icons-in-terminal projectile)
+  :bind (("C-x t" . sidebar-buffers-open))
   :init (setq sidebar-show-hidden-files nil)
   :load-path "site-lisp/sidebar")
 
