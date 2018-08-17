@@ -143,6 +143,16 @@
   :mode ("\\.hs\\'"))
 
 
+(use-package nginx-mode
+  :ensure t)
+
+(use-package company-nginx
+  :ensure t
+  :requires nginx-mode
+  :config
+  (eval-after-load 'nginx-mode
+    '(add-hook 'nginx-mode-hook #'company-nginx-keywords)))
+
 
 
 ;;; ends here
