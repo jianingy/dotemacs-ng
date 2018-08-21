@@ -167,16 +167,14 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package pangu-spacing
-  :disabled
   :ensure t
+  :hook
+  ((org-mode . real-pangu-spacing-mode)
+   (markdown-mode . real-pangu-spacing-mode))
   :init
-  (add-hook 'org-mode-hook
-            '(lambda ()
-               (nby/local-set-variables 'pangu-spacing-real-insert-separtor t)))
-  (add-hook 'markdown-mode-hook
-            '(lambda ()
-               (nby/local-set-variables 'pangu-spacing-real-insert-separtor t)))
-  :config (global-pangu-spacing-mode 1))
+  (defun real-pangu-spacing-mode ()
+    (set (make-local-variable 'pangu-spacing-real-insert-separtor) t)
+    (pangu-spacing-mode t)))
 
 (use-package buffer-move
   :ensure t

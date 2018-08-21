@@ -21,6 +21,10 @@
   (company-tooltip-selection ((t (:foreground "black" :background "deep sky blue"))))
   (company-tooltip-common ((t (:foreground "orange"))))
   (company-tooltip-common-selection ((t (:foreground "black"))))
+  (org-level-1 ((t (:height 1.0))))
+  (org-level-2 ((t (:height 1.0))))
+  (org-level-3 ((t (:height 1.0))))
+  (org-level-4 ((t (:height 1.0))))
   (vertical-border ((t (:foreground "#333333"))))
   (nlinum-current-line ((t (:foreground "orange"))))
   :init
@@ -227,7 +231,8 @@
 (use-package dimmer
   :ensure t
   :diminish t
-  :init (setq dimmer-exclusion-regexp "\\*helm")
+  :init (setq dimmer-exclusion-regexp
+              "^\*helm.*\\|^\*Calendar.*\\|^\*Minibuf-.*")
   :config (dimmer-mode))
 
 (use-package telephone-line
