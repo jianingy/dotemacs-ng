@@ -154,6 +154,11 @@
   (eval-after-load 'nginx-mode
     '(add-hook 'nginx-mode-hook #'company-nginx-keywords)))
 
+(use-package plantuml-mode
+  :ensure t
+  :mode (("\\.puml\\'" . plantuml-mode))
+  :init
+  (setq plantuml-output-type "png"))
 
 
 ;;; ends here
