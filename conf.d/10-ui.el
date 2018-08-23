@@ -25,6 +25,7 @@
   (org-level-2 ((t (:height 1.0))))
   (org-level-3 ((t (:height 1.0))))
   (org-level-4 ((t (:height 1.0))))
+  (org-document-title ((t (:height 1.0))))
   (vertical-border ((t (:foreground "#333333"))))
   (nlinum-current-line ((t (:foreground "orange"))))
   :init
