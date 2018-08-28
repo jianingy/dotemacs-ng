@@ -16,10 +16,11 @@
 
 ;; syntax check
 (use-package flycheck
-  :commands (flycheck-add-mode)
   :ensure t
+  :pin melpa-stable
+  :commands (flycheck-add-mode)
   :bind (("C-c n" . next-error))
-  :hook (after-init . global-flycheck-mode))
+  :config (global-flycheck-mode))
 
 (use-package flycheck-color-mode-line
   :ensure t

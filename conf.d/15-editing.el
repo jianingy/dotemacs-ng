@@ -18,10 +18,10 @@
  kept-old-versions                 5
  version-control                   t               ;; use versioned backups
  enable-recursive-minibuffers      t
- abbrev-file-name              (concat user-conf-dir "db/abbrev.el")
- recentf-save-file             (concat user-conf-dir "db/recentf.el")
- nsm-settings-file             (concat user-conf-dir "db/network-security.el")
- ac-comphist-file              (concat user-conf-dir "db/ac-comphist.el")
+ abbrev-file-name    (concat user-conf-dir "db/abbrev.el")
+ recentf-save-file   (concat user-conf-dir "db/recentf.el")
+ nsm-settings-file   (concat user-conf-dir "db/network-security.el")
+ ac-comphist-file    (concat user-conf-dir "db/ac-comphist.el")
  frame-title-format  "emacs@%b")     ;; display buffer name at title bar
 
 ;; move mouse pointer away while cursor is near

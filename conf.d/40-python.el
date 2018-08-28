@@ -34,11 +34,10 @@
 
 (use-package flycheck-pycheckers
   :ensure t
-  :after flycheck
+  :after (flycheck python-mode)
   :hook (flycheck-mode . flycheck-pycheckers-setup)
   :init (add-hook 'python-mode-hook
-                  (lambda () (nby/local-set-variables
-                              '(flycheck-checker 'python-flake8))))
+                  (lambda () (setq flycheck-checker 'python-flake8)))
   :config (flycheck-add-mode 'python-flake8 'python-mode))
 
 
@@ -59,6 +58,7 @@
 (use-package lsp-python
   :ensure t
   :after lsp-mode
+  :init (setq lsp-ui-flycheck-enable nil)
   :hook (python-mode . lsp-python-enable))
 
 (use-package anaconda-mode
@@ -68,5 +68,5 @@
   (python-mode . anaconda-mode)
   (python-mode . anaconda-eldoc-mode))
 
-(provide '45-python)
-;;; 45-python ends here
+(provide '40-python)
+;;; 40-python ends here
