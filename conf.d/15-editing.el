@@ -45,11 +45,18 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (let ((temporary-directory
-       (concat (file-name-as-directory temporary-file-directory) "emacs")))
+       (concat (file-name-as-directory temporary-file-directory)
+               (format "emacs-%d" (user-uid)))))
   (message (concat "[config] backup directory is " temporary-directory))
   (unless (file-exists-p temporary-directory)
     (make-directory temporary-directory))
   (setq
+   auto-save-directory-fallback "/tmp/"
+   auto-save-hash-p nil
+   auto-save-timeout 100
+   auto-save-interval 300
+   auto-save-list-file-prefix temporary-file-directory
+   auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
    temporary-file-directory temporary-directory
    backup-directory-alist `(("." . ,temporary-directory))))
 
