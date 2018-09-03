@@ -73,6 +73,8 @@
   :custom
   (projectile-known-projects-file (concat user-conf-dir "db/projectile-bookmarks.eld"))
   :bind-keymap ("C-c p" . projectile-command-map)
+  :init
+  (setq projectile-enable-caching t)
   :config (projectile-mode))
 
 ;; cannot use requires here???
