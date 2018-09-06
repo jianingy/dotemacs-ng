@@ -5,6 +5,15 @@
           '((sequence "TODO(t)" "WORKING" "SUSPENDED" "|"
                       "DONE(d)" "ABANDONED(a)")
             (sequence "CHECK(c)" "|" "VERIFIED(v)"))
+          org-agenda-prefix-format
+          '((agenda . " %?-12t% s ")
+            (todo . " %-12:s ● ")
+            (tags . " %i %-12:c")
+            (search . " %i %-12:c"))
+          org-priority-faces
+          '((65 :foreground "white" :background "red")
+            (66 :foreground "orange")
+            (67 . "royal blue"))
           org-todo-keyword-faces
           '(("CHECK" :foreground "orange")
             ("WORKING" :foreground "white" :background "firebrick")
@@ -25,3 +34,11 @@
   (org-babel-do-load-languages 'org-babel-load-languages
                                '((emacs-lisp . t)
                                  (plantuml . t))))
+
+
+(use-package org-bullets
+  :ensure t
+  :after org
+  :init
+  (setq org-bullets-bullet-list '("▸" "◆" "●" "○"))
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
