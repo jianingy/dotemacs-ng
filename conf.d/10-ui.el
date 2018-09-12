@@ -71,7 +71,11 @@
   (load-theme 'spolsky t))
 
 (use-package color-theme
+  :ensure t)
+
+(use-package tangotango-theme
   :ensure t
+  :after color-theme
   :if (not window-system)
   :custom-face
   (company-tooltip ((t (:inherit default :foreground "white smoke" :background "#333"))))
@@ -83,7 +87,7 @@
   (company-tooltip-common ((t (:foreground "orange"))))
   (company-tooltip-common-selection ((t (:foreground "black"))))
   (nlinum-current-line ((t (:foreground "orange"))))
-  :config (load-theme 'hickey t))
+  :config (load-theme 'tangotango t))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
