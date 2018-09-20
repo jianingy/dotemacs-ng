@@ -68,5 +68,21 @@
   (python-mode . anaconda-mode)
   (python-mode . anaconda-eldoc-mode))
 
+;; Emacs IPython Notebook
+(use-package ein-loaddefs :after ein)
+(use-package ein-notebook :after ein)
+(use-package ein-subpackages :after ein)
+
+(use-package ein
+  :ensure t
+  :bind (:map ein:notebook-mode-map
+
+              ("C-c C-x C-c" . comment-region)
+              ("C-c C-x C-d" . uncomment-region))
+  :init
+  (setq ein:use-auto-complete t)
+  :config
+  (unbind-key "C-c C-x" ein:notebook-mode-map))
+
 (provide '40-python)
 ;;; 40-python ends here
