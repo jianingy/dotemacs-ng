@@ -160,13 +160,18 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package yasnippet
-  :ensure yasnippet-bundle
+  :ensure yasnippet
+  :pin melpa-stable
   :diminish yas/minor-mode
-  :init
-  (add-to-list 'yas/root-directory (concat user-conf-dir "snippets"))
   :config
+  (add-to-list 'yas/root-directory (concat user-conf-dir "snippets"))
   (yas/reload-all)
   (yas/global-mode 1))
+
+(use-package yasnippet-snippets
+  :ensure t
+  :pin melpa-stable
+  :requires yasnippet)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

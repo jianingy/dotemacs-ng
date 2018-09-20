@@ -67,14 +67,22 @@
   :ensure t
   :if window-system)
 
+(use-package ivy
+  :ensure t)
+
 (use-package projectile
   :ensure t
   :diminish projectile-mode
-  :custom
-  (projectile-known-projects-file (concat user-conf-dir "db/projectile-bookmarks.eld"))
+  :requires ivy
   :bind-keymap ("C-c p" . projectile-command-map)
   :init
-  (setq projectile-enable-caching t)
+  (setq projectile-enable-caching t
+        projectile-known-projects-file (concat user-emacs-directory
+                                               "db/projectile-bookmarks.eld")
+        projectile-cache-file (concat user-emacs-directory
+                                      "db/projectile-cache.el")
+        projectile-completion-system 'ivy
+        projectile-file-exists-remote-cache-expire nil)
   :config (projectile-mode))
 
 ;; cannot use requires here???

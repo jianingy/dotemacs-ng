@@ -3,5 +3,4 @@ db/*
 auto-save-list
 .python-environments
 *.elc
-snippets
 site-lisp
