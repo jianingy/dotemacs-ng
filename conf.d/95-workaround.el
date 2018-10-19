@@ -14,4 +14,8 @@
   ;; double bold font looks ugly on linux, so disable bold for all fonts.
   (mapc #'(lambda (x) (set-face-attribute x nil :weight 'normal)) (face-list)))
 
+(add-hook 'find-file-hook
+          (lambda ()
+            (when (file-remote-p default-directory)
+              (setq-local projectile-mode-line "Projectile"))))
 ;;; ends here

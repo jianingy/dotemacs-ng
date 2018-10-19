@@ -10,6 +10,7 @@
                 " ≫ ")
      "]"))
   (setq
+   org-startup-indented t
    org-todo-keywords
    '((sequence "TODO(t)" "WORKING" "SUSPENDED" "|"
                "DONE(d)" "ABANDONED(a)")
