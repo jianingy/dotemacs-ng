@@ -41,6 +41,9 @@
   :init (setq column-enfore-column 80)
   :config (global-column-enforce-mode t))
 
+(use-package string-inflection
+  :ensure t
+  :bind (("C-c q" . string-inflection-toggle)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
