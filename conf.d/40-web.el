@@ -11,6 +11,7 @@
               js2-missing-semi-one-line-override nil)
   :config
   (flycheck-add-mode 'javascript-eslint 'web-mode)
+  (flycheck-add-mode 'javascript-eslint 'js-mode)
   (flycheck-add-mode 'javascript-eslint 'js2-mode))
 
 (use-package web-mode
@@ -23,10 +24,20 @@
 
 (use-package vue-mode
   :mode ("\\.vue\\'" . vue-mode)
+  :ensure t
+  :config
+  (setq mmm-submode-decoration-level 0))
+
+
+(use-package lsp-vue
+  :after (lsp-mode)
+  :hook ((vue-mode . lsp-vue-mmm-enable))
   :ensure t)
 
 (use-package company-tern
   :ensure t
+  :hook ((js2-mode . company-mode)
+         (js-mode . company-mode))
   :config
   (add-to-list 'company-backends 'company-tern))
 

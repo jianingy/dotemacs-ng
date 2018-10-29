@@ -104,8 +104,8 @@
               ([tab] . company-complete-selection)
               ("C-n" . company-select-next)
               ("C-p" . company-select-previous))
-  :config (global-company-mode))
-
+  :init
+  (add-hook 'prog-mode-hook 'company-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -174,5 +174,8 @@
   :init
   (setq plantuml-output-type "png"))
 
+(use-package json-mode
+  :ensure t
+  :mode (("\\.json\\'" . json-mode)))
 
 ;;; ends here

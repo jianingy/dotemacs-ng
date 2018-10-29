@@ -10,7 +10,6 @@
 (use-package monokai-theme
   :ensure t
   :if window-system
-  :after (company nlinum)
   :custom-face
   (mode-line ((t (:box (:line-width 2 :color "#49483E" :style nil)))))
   (company-tooltip ((t (:inherit default :foreground "white smoke" :background "#333"))))
@@ -39,7 +38,9 @@
   (add-hook 'buffer-list-update-hook 'nby/display-header-as-margin)
   (add-hook 'emacs-startup-hook  'nby/display-header-as-margin)
   :config
+  (message "Loading theme monokai")
   (load-theme 'monokai t))
+
 
 (use-package sublime-themes
   :disabled
@@ -97,6 +98,17 @@
 
 
 (set-language-environment 'UTF-8)
+(set-default-coding-systems 'utf-8)
+(set-buffer-file-coding-system 'utf-8-unix)
+(set-clipboard-coding-system 'utf-8-unix)
+(set-file-name-coding-system 'utf-8-unix)
+(set-keyboard-coding-system 'utf-8-unix)
+(set-next-selection-coding-system 'utf-8-unix)
+(set-selection-coding-system 'utf-8-unix)
+(set-terminal-coding-system 'utf-8-unix)
+(prefer-coding-system 'utf-8)
+ (setq locale-coding-system 'utf-8)
+
 (menu-bar-mode -1)
 (custom-set-variables
  '(custom-file (nby/find-local-config '(".usercustom.el" "_usercustom.el")))
@@ -134,8 +146,12 @@
 (defvar nby/x-font-cjk "Sans"
   "Font for CJK characters.")
 
-(defvar nby/chinese-font-scale 1.2
+(defvar nby/chinese-font-rescales ()
   "Rescale value for chinese to match latin fonts")
+
+;; refer to http://baohaojun.github.io/perfect-emacs-chinese-font.html
+(when nby/chinese-font-rescales
+  (add-to-list 'face-font-rescale-alist nby/chinese-font-rescales))
 
 ;; set xft font when we are using window system
 (when window-system
@@ -145,14 +161,12 @@
   (if nby/x-font-latin
       (set-face-attribute 'default nil :font nby/x-font-latin))
 
-  ;; refer to http://baohaojun.github.io/perfect-emacs-chinese-font.html
-  (setq face-font-rescale-alist `((nby/x-font-cjk . ,nby/chinese-font-scale)))
-
   (if nby/x-font-cjk
       (dolist (charset '(kana han symbol cjk-misc bopomofo))
         (set-fontset-font (frame-parameter nil 'font)
                           charset
                           nby/x-font-cjk))))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
