@@ -21,7 +21,9 @@
 
 (use-package flycheck-pyflakes
   :requires flycheck
-  :ensure t)
+  :ensure t
+  :hook (python-mode . (lambda () (flycheck-select-checker 'python-flake8)))
+  :config (flycheck-add-mode 'python-flake8 'python-mode))
 
 (use-package virtualenvwrapper
   :requires python-mode
@@ -33,13 +35,10 @@
   :hook (python-mode . auto-virtualenvwrapper-activate))
 
 (use-package flycheck-pycheckers
+  :disabled
   :ensure t
   :after (flycheck python-mode)
-  :hook (flycheck-mode . flycheck-pycheckers-setup)
-  :init (add-hook 'python-mode-hook
-                  (lambda () (setq flycheck-checker 'python-flake8)))
-  :config (flycheck-add-mode 'python-flake8 'python-mode))
-
+  :hook (flycheck-mode . flycheck-pycheckers-setup))
 
 (use-package jedi-core
   :disabled
@@ -58,7 +57,8 @@
 (use-package lsp-python
   :ensure t
   :after lsp-mode
-  :init (setq lsp-ui-flycheck-enable nil)
+  :init (setq lsp-ui-flycheck-enable nil
+              lsp-python-use-init-for-project-root t)
   :hook (python-mode . lsp-python-enable))
 
 (use-package anaconda-mode
