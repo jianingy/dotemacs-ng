@@ -114,11 +114,17 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package lsp-mode
-  :ensure t)
+  :ensure t
+  :config
+  (require 'lsp-imenu)
+  (add-hook 'lsp-after-open-hook 'lsp-enable-imenu))
+
 
 (use-package lsp-ui
   :ensure t
   :after lsp-mode
+  :config
+  (setq lsp-ui-sideline-ignore-duplicate t)
   :hook (lsp-mode . lsp-ui-mode))
 
 (use-package company-lsp

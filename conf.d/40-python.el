@@ -57,8 +57,17 @@
 (use-package lsp-python
   :ensure t
   :after lsp-mode
-  :init (setq lsp-ui-flycheck-enable nil
-              lsp-python-use-init-for-project-root t)
+  :config
+  (lsp-define-stdio-client lsp-python "python"
+                           #'projectile-project-root
+                           '("pyls"))
+  (defun lsp-set-cfg ()
+    (let ((lsp-cfg `(:pyls (:configurationSources ("flake8")))))
+      ;; TODO: check lsp--cur-workspace here to decide per server / project
+      (lsp--set-configuration lsp-cfg)))
+
+  (add-hook 'lsp-after-initialize-hook 'lsp-set-cfg)
+  :init (setq lsp-ui-flycheck-enable nil)
   :hook (python-mode . lsp-python-enable))
 
 (use-package anaconda-mode
@@ -83,6 +92,7 @@
   (setq ein:use-auto-complete t)
   :config
   (unbind-key "C-c C-x" ein:notebook-mode-map))
+
 
 (provide '40-python)
 ;;; 40-python ends here
