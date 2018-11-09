@@ -25,38 +25,21 @@
   :hook (python-mode . (lambda () (flycheck-select-checker 'python-flake8)))
   :config (flycheck-add-mode 'python-flake8 'python-mode))
 
-(use-package virtualenvwrapper
-  :requires python-mode
-  :ensure t)
 
-(use-package auto-virtualenvwrapper
+(use-package pyvenv
+  :after projectile
   :ensure t
-  :requires python-mode
-  :hook (python-mode . auto-virtualenvwrapper-activate))
-
-(use-package flycheck-pycheckers
-  :disabled
-  :ensure t
-  :after (flycheck python-mode)
-  :hook (flycheck-mode . flycheck-pycheckers-setup))
-
-(use-package jedi-core
-  :disabled
-  :ensure t
-  :after python-mode
-  :init  (setq jedi:use-shortcuts t
-               jedi:complete-on-dot nil))
-
-(use-package company-jedi
-  :disabled
-  :ensure t
-  :init
-  (add-hook 'python-mode-hook
-            (lambda () (add-to-list 'company-backends 'company-jedi))))
+  :config
+  (defun pyvenv-autoload ()
+    (let* ((pdir (projectile-project-root)) (pfile (concat pdir ".venv")))
+      (if (file-exists-p pfile)
+          (pyvenv-workon (with-temp-buffer
+                           (insert-file-contents pfile)
+                           (nth 0 (split-string (buffer-string)))))))))
 
 (use-package lsp-python
   :ensure t
-  :after lsp-mode
+  :after (lsp-mode pyvenv)
   :config
   (lsp-define-stdio-client lsp-python "python"
                            #'projectile-project-root
@@ -65,17 +48,14 @@
     (let ((lsp-cfg `(:pyls (:configurationSources ("flake8")))))
       ;; TODO: check lsp--cur-workspace here to decide per server / project
       (lsp--set-configuration lsp-cfg)))
+  (defun nby/lsp-python-enable ()
+    (progn
+      (pyvenv-autoload)
+      (lsp-python-enable)))
+  :hook ((python-mode . nby/lsp-python-enable)
+         (lsp-after-initialize-hook . lsp-set-cfg)))
 
-  (add-hook 'lsp-after-initialize-hook 'lsp-set-cfg)
-  :init (setq lsp-ui-flycheck-enable nil)
-  :hook (python-mode . lsp-python-enable))
 
-(use-package anaconda-mode
-  :disabled
-  :ensure t
-  :hook
-  (python-mode . anaconda-mode)
-  (python-mode . anaconda-eldoc-mode))
 
 ;; Emacs IPython Notebook
 (use-package ein-loaddefs :after ein)
