@@ -1,5 +1,5 @@
 (use-package org
-  :ensure t
+  :ensure
   :init
   (defun nby/org-agenda-breadcrumb ()
     (concat
@@ -47,7 +47,7 @@
 
 
 (use-package org-bullets
-  :ensure t
+  :ensure
   :after org
   :init
   (setq org-bullets-bullet-list '("▸" "◆" "●" "○"))

@@ -3,7 +3,7 @@
 ;;; Code:
 
 (use-package helm
-  :ensure t
+  :ensure
   :diminish helm-mode
   :init  (setq helm-split-window-in-side-p       t ; open helm buffer inside current
                                                    ; window, not occupy whole other window
@@ -29,7 +29,7 @@
   :config (helm-mode 1))
 
 (use-package helm-bm
-  :ensure t
+  :ensure
   :requires helm
   :bind (("C-c b" . helm-bm)))
 

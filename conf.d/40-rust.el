@@ -4,17 +4,18 @@
 ;;; Code:
 
 (use-package rust-mode
-  :ensure t
+  :ensure
   :mode ("\\.rs\\'" . rust-mode))
 
 (use-package flycheck-rust
-  :ensure t
+  :ensure
   :after rust-mode
   :hook (flycheck-mode . flycheck-rust-setup))
 
 (use-package lsp-rust
-  :ensure t
+  :ensure
   :after lsp-mode
   :hook (rust-mode . lsp-rust-enable))
 
+(use-package rust-playground :ensure)
 ;;; ends here

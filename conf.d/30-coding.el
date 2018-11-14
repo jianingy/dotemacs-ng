@@ -16,19 +16,19 @@
 
 ;; syntax check
 (use-package flycheck
-  :ensure t
+  :ensure
   :pin melpa-stable
   :commands (flycheck-add-mode)
   :bind (("C-c n" . next-error))
   :config (global-flycheck-mode))
 
 (use-package flycheck-color-mode-line
-  :ensure t
+  :ensure
   :hook (flycheck-mode . flycheck-color-mode-line-mode))
 
 (use-package flycheck-pos-tip
   :after flycheck
-  :ensure t
+  :ensure
   :init (setq flycheck-pos-tip-max-width 80
               flycheck-pos-tip-timeout 30)
   :config (eval-after-load 'flycheck
@@ -36,13 +36,13 @@
                    #'flycheck-pos-tip-error-messages)))
 
 (use-package column-enforce-mode
-  :ensure t
+  :ensure
   :diminish column-enforce-mode
   :init (setq column-enfore-column 80)
   :config (global-column-enforce-mode t))
 
 (use-package string-inflection
-  :ensure t
+  :ensure
   :bind (("C-c q" . string-inflection-toggle)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -52,14 +52,14 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package magit
-  :ensure t
+  :ensure
   :bind (("C-c g" . magit-status)))
 
 (use-package fringe-helper
-  :ensure t)
+  :ensure)
 
 (use-package git-gutter+
-  :ensure t
+  :ensure
   :diminish git-gutter+-mode
   :init (setq git-gutter+-modified-sign "  " ;; two space
               git-gutter+-added-sign "++"    ;; multiple character is OK
@@ -67,14 +67,14 @@
   :config (global-git-gutter+-mode t))
 
 (use-package git-gutter-fringe+
-  :ensure t
+  :ensure
   :if window-system)
 
 (use-package ivy
-  :ensure t)
+  :ensure)
 
 (use-package projectile
-  :ensure t
+  :ensure
   :diminish projectile-mode
   :requires ivy
   :bind-keymap ("C-c p" . projectile-command-map)
@@ -90,7 +90,7 @@
 
 ;; cannot use requires here???
 (use-package helm-projectile
-  :ensure t
+  :ensure
   :config (helm-projectile-on))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -99,7 +99,7 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package company
-  :ensure t
+  :ensure
   :bind (:map company-active-map
               ([tab] . company-complete-selection)
               ("C-n" . company-select-next)
@@ -114,21 +114,21 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package lsp-mode
-  :ensure t
+  :ensure
   :config
   (require 'lsp-imenu)
   (add-hook 'lsp-after-open-hook 'lsp-enable-imenu))
 
 
 (use-package lsp-ui
-  :ensure t
+  :ensure
   :after lsp-mode
   :config
   (setq lsp-ui-sideline-ignore-duplicate t)
   :hook (lsp-mode . lsp-ui-mode))
 
 (use-package company-lsp
-  :ensure t
+  :ensure
   :after (lsp-mode lsp-ui company)
   :bind (:map lsp-ui-mode-map
          ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
@@ -143,7 +143,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package rainbow-delimiters
-  :ensure t
+  :ensure
   :hook
   (lisp-mode rainbow-delimiters-mode))
 
@@ -154,34 +154,34 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package yaml-mode
-  :ensure t
+  :ensure
   :mode (("\\.yml\\'" . yaml-mode)
          ("\\.yaml\\'" . yaml-mode)))
 
 
 (use-package haskell-mode
-  :ensure t
+  :ensure
   :mode ("\\.hs\\'"))
 
 
 (use-package nginx-mode
-  :ensure t)
+  :ensure)
 
 (use-package company-nginx
-  :ensure t
+  :ensure
   :requires nginx-mode
   :config
   (eval-after-load 'nginx-mode
     '(add-hook 'nginx-mode-hook #'company-nginx-keywords)))
 
 (use-package plantuml-mode
-  :ensure t
+  :ensure
   :mode (("\\.puml\\'" . plantuml-mode))
   :init
   (setq plantuml-output-type "png"))
 
 (use-package json-mode
-  :ensure t
+  :ensure
   :mode (("\\.json\\'" . json-mode)))
 
 ;;; ends here

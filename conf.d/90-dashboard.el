@@ -8,7 +8,7 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package dashboard
-  :ensure t
+  :ensure
   :init (setq dashboard-banner-logo-title
               (format "Emacs starts in %.2f seconds. "
                       (- (float-time) nby/startup-timestamp))

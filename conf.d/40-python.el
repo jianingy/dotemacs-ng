@@ -6,7 +6,7 @@
   "Number of spaces for indentation in 'python-mode'.")
 
 (use-package pylookup
-  :ensure t
+  :ensure
   :disabled
   :custom
   (pylookup-program (concat user-conf-dir ".python-environments/default/bin/pylookup.py"))
@@ -15,20 +15,20 @@
 
 (use-package python-mode
   :mode ("\\.py\\'" . python-mode)
-  :ensure t
+  :ensure
   :custom (tab-width nby/python-indentation-size)
   (py-indent-offset nby/python-indentation-size))
 
 (use-package flycheck-pyflakes
   :requires flycheck
-  :ensure t
+  :ensure
   :hook (python-mode . (lambda () (flycheck-select-checker 'python-flake8)))
   :config (flycheck-add-mode 'python-flake8 'python-mode))
 
 
 (use-package pyvenv
   :after projectile
-  :ensure t
+  :ensure
   :config
   (defun pyvenv-autoload ()
     (let* ((pdir (projectile-project-root)) (pfile (concat pdir ".venv")))
@@ -38,7 +38,7 @@
                            (nth 0 (split-string (buffer-string)))))))))
 
 (use-package lsp-python
-  :ensure t
+  :ensure
   :after (lsp-mode pyvenv)
   :config
   (lsp-define-stdio-client lsp-python "python"
@@ -63,7 +63,7 @@
 (use-package ein-subpackages :after ein)
 
 (use-package ein
-  :ensure t
+  :ensure
   :bind (:map ein:notebook-mode-map
 
               ("C-c C-x C-c" . comment-region)

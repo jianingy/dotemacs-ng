@@ -5,11 +5,11 @@
 (use-package markdown-mode
   :mode (("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
-  :ensure t)
+  :ensure)
 
 (use-package markdown-mode+
   :after markdown-mode
-  :ensure t)
+  :ensure)
 
 (use-package livedown
   :load-path "site-lisp/emacs-livedown"

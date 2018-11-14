@@ -37,7 +37,7 @@
 (put 'narrow-to-region 'disabled nil)  ;; narrow-mode
 
 (use-package window-numbering
-  :ensure t
+  :ensure
   :config (window-numbering-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -78,7 +78,7 @@
 (global-set-key (kbd "M-n")            'forward-sexp)
 
 (use-package boxquote
-  :ensure t
+  :ensure
   :bind (("C-c M-b" . boxquote-region)))
 
 
@@ -89,7 +89,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package multiple-cursors
-  :ensure t
+  :ensure
   :bind (("C-S-c C-S-c" . mc/edit-lines)
          ("C->" . mc/mark-next-like-this)
          ("C-<" . mc/mark-previous-like-this)
@@ -114,7 +114,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package edit-server
   :if window-system
-  :ensure t
+  :ensure
   :init
   (add-hook 'after-init-hook 'server-start t)
   (add-hook 'after-init-hook 'edit-server-start t))
@@ -126,7 +126,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package expand-region
-  :ensure t
+  :ensure
   :bind (("C--" . er/contract-region)
          ("C-=" . er/expand-region)))
 
@@ -137,7 +137,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package avy
-  :ensure t
+  :ensure
   :bind (("C-;" . avy-goto-char-timer)
          ("C-'" . avy-goto-char))
   :init (avy-setup-default))
@@ -150,7 +150,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package symbol-overlay
-  :ensure t
+  :ensure
   :bind (("M-i". symbol-overlay-put)))
 
 
@@ -169,7 +169,7 @@
   (yas/global-mode 1))
 
 (use-package yasnippet-snippets
-  :ensure t
+  :ensure
   :pin melpa-stable
   :requires yasnippet)
 
@@ -181,7 +181,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package pangu-spacing
-  :ensure t
+  :ensure
   :hook
   ((org-mode . real-pangu-spacing-mode)
    (markdown-mode . real-pangu-spacing-mode))
@@ -191,7 +191,7 @@
     (pangu-spacing-mode t)))
 
 (use-package buffer-move
-  :ensure t
+  :ensure
   :commands (buf-move-up buf-move-down buf-move-left buf-moveright))
 
 ;;; ends here

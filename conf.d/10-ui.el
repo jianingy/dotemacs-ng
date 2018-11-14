@@ -8,7 +8,7 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package monokai-theme
-  :ensure t
+  :ensure
   :if window-system
   :custom-face
   (mode-line ((t (:box (:line-width 2 :color "#49483E" :style nil)))))
@@ -44,7 +44,7 @@
 
 (use-package sublime-themes
   :disabled
-  :ensure t
+  :ensure
   :if window-system
   :after (company nlinum)
   :custom-face
@@ -72,10 +72,10 @@
   (load-theme 'spolsky t))
 
 (use-package color-theme
-  :ensure t)
+  :ensure)
 
 (use-package tangotango-theme
-  :ensure t
+  :ensure
   :after color-theme
   :if (not window-system)
   :custom-face
@@ -201,7 +201,7 @@
 
 (use-package smart-mode-line
   :disabled
-  :ensure t
+  :ensure
   :init (setq sml/no-confirm-load-theme t
               sml/theme 'respectful)
   :config (sml/setup))
@@ -213,7 +213,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package nlinum
-  :ensure t
+  :ensure
   :config
   (setq nlinum-format "  %4d "
         nlinum-highlight-current-line t)
@@ -224,7 +224,7 @@
                                         ; Fix disappearing line numbers in nlinum
 (use-package nlinum-hl
   :after nlinum
-  :ensure t)
+  :ensure)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -235,7 +235,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package popwin
-  :ensure t
+  :ensure
   :config (popwin-mode 1))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -248,14 +248,14 @@
   :init (setq uniquify-buffer-name-style 'forward))
 
 (use-package dimmer
-  :ensure t
+  :ensure
   :diminish t
   :init (setq dimmer-exclusion-regexp
               "^\*helm.*\\|^\*Calendar.*\\|^\*Minibuf-.*")
   :config (dimmer-mode))
 
 (use-package telephone-line
-  :ensure t
+  :ensure
   :config (telephone-line-mode 1))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -264,8 +264,8 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package ov :ensure t)
-(use-package frame-local :ensure t)
+(use-package ov :ensure)
+(use-package frame-local :ensure)
 (use-package icons-in-terminal
   :load-path
   (lambda () (expand-file-name "~/.local/share/icons-in-terminal")))
