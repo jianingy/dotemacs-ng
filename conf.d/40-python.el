@@ -14,48 +14,25 @@
 
 
 (use-package python-mode
+  :after (lsp-mode)
   :mode ("\\.py\\'" . python-mode)
   :ensure
+  :hook (python-mode . lsp)
   :custom (tab-width nby/python-indentation-size)
   (py-indent-offset nby/python-indentation-size))
-
-(use-package flycheck-pyflakes
-  :requires flycheck
-  :ensure
-  :hook (python-mode . (lambda () (flycheck-select-checker 'python-flake8)))
-  :config (flycheck-add-mode 'python-flake8 'python-mode))
 
 
 (use-package pyvenv
   :after projectile
   :ensure
-  :config
+  :hook (python-mode . pyvenv-autoload)
+  :init
   (defun pyvenv-autoload ()
     (let* ((pdir (projectile-project-root)) (pfile (concat pdir ".venv")))
       (if (file-exists-p pfile)
           (pyvenv-workon (with-temp-buffer
                            (insert-file-contents pfile)
                            (nth 0 (split-string (buffer-string)))))))))
-
-(use-package lsp-python
-  :ensure
-  :after (lsp-mode pyvenv)
-  :config
-  (lsp-define-stdio-client lsp-python "python"
-                           #'projectile-project-root
-                           '("pyls"))
-  (defun lsp-set-cfg ()
-    (let ((lsp-cfg `(:pyls (:configurationSources ("flake8")))))
-      ;; TODO: check lsp--cur-workspace here to decide per server / project
-      (lsp--set-configuration lsp-cfg)))
-  (defun nby/lsp-python-enable ()
-    (progn
-      (pyvenv-autoload)
-      (lsp-python-enable)))
-  :hook ((python-mode . nby/lsp-python-enable)
-         (lsp-after-initialize-hook . lsp-set-cfg)))
-
-
 
 ;; Emacs IPython Notebook
 (use-package ein-loaddefs :after ein)

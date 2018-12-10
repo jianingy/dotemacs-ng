@@ -115,10 +115,11 @@
 
 (use-package lsp-mode
   :ensure
+  :init
+  (setq lsp-auto-guess-root t
+        lsp-prefer-flymake nil)
   :config
-  (require 'lsp-imenu)
-  (add-hook 'lsp-after-open-hook 'lsp-enable-imenu))
-
+  (require 'lsp-clients))
 
 (use-package lsp-ui
   :ensure

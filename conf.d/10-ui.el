@@ -268,7 +268,9 @@
 (use-package frame-local :ensure)
 (use-package icons-in-terminal
   :load-path
-  (lambda () (expand-file-name "~/.local/share/icons-in-terminal")))
+  (lambda () (expand-file-name "~/.local/share/icons-in-terminal"))
+  :config
+  (insert (icons-in-terminal 'oct_flame)))
 (use-package sidebar
   :after (ov frame-local icons-in-terminal projectile)
   :bind (("C-x t" . sidebar-buffers-open))
