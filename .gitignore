@@ -7,3 +7,4 @@ site-lisp
 request
 wanderlust
 .lsp-session*
+session.*

@@ -34,8 +34,13 @@
   :ensure)
 
 (use-package js2-mode
+  :ensure
+  :after (lsp-mode)
   :mode ("\\.js\\'" . js2-mode)
-  :ensure)
+  :hook (js2-mode . lsp)
+  :init (setq js-indent-level 2
+              js2-strict-missing-semi-warning nil
+              js2-missing-semi-one-line-override nil))
 
 (use-package vue-mode
   :disabled
@@ -51,14 +56,6 @@
   :after (lsp-mode)
   :hook ((vue-mode . lsp-vue-mmm-enable))
   :ensure)
-
-(use-package lsp-javascript-typescript
-  :after (lsp-mode)
-  :ensure
-  :init (setq js-indent-level 2
-              js2-strict-missing-semi-warning nil
-              js2-missing-semi-one-line-override nil)
-  :hook ((js2-mode . lsp-javascript-typescript-enable)))
 
 (use-package xref-js2
   :after (js2-mode)
