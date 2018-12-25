@@ -2,18 +2,18 @@
 ;;; Commentary:
 ;;; Code:
 
-(defadvice auto-insert  (around yasnippet-expand-after-auto-insert activate)
-  "Expand auto-inserted content as yasnippet templete."
-  (let ((is-new-file (and (not buffer-read-only)
-                          (or (eq this-command 'auto-insert)
-                              (and auto-insert (bobp) (eobp))))))
-    ad-do-it
-    (let ((old-point-max (point-max))
-          (yas-indent-line nil))
-      (when is-new-file
-        (goto-char old-point-max)
-        (yas/expand-snippet (buffer-substring-no-properties (point-min) (point-max)))
-        (delete-region (point-min) old-point-max)))))
+;; (defadvice auto-insert  (around yasnippet-expand-after-auto-insert activate)
+;;   "Expand auto-inserted content as yasnippet templete."
+;;   (let ((is-new-file (and (not buffer-read-only)
+;;                           (or (eq this-command 'auto-insert)
+;;                               (and auto-insert (bobp) (eobp))))))
+;;     ad-do-it
+;;     (let ((old-point-max (point-max))
+;;           (yas-indent-line nil))
+;;       (when is-new-file
+;;         (goto-char old-point-max)
+;;         (yas/expand-snippet (buffer-substring-no-properties (point-min) (point-max)))
+;;         (delete-region (point-min) old-point-max)))))
 
 
 (auto-insert-mode)
@@ -31,7 +31,7 @@
 (define-auto-insert "\\.rb$" "template.rb")
 (define-auto-insert "\\.rs$" "template.rs")
 (define-auto-insert "\\.el$" "template.el")
-(define-auto-insert "\\.py$" "template.py")  ;; conflicts with python-mode
+(define-auto-insert "\\.py$" "template.py")
 (define-auto-insert "\\.pl$" "template.pl")
 (define-auto-insert "\\.pm$" "template.pm")
 (define-auto-insert "\\.ml$" "template.ml")
