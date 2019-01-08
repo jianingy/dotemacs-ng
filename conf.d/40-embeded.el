@@ -4,13 +4,20 @@
 
 (use-package irony
   :ensure
-  :after company
-  :hook ((c++-mode . irony-mode))
+  :hook ((c++-mode . irony-mode)
+         (c-mode . irony-mode)
+         (irony-mode . irony-cdb-autosetup-compile-options))
   :bind (([remap completion-at-point] . irony-completion-at-point-async)
-         ([remap complete-symbol] . irony-completion-at-point-async))
+         ([remap complete-symbol] . irony-completion-at-point-async)))
+
+(use-package company-irony
+  :ensure
+  :after (irony company)
   :init
   (add-to-list 'company-backends 'company-irony))
 
 (use-package flycheck-irony
   :ensure
-  :hook ((flycheck-mode . flycheck-irony-setup)))
+  :after irony
+  :config
+  (flycheck-irony-setup))
