@@ -33,7 +33,17 @@
         web-mode-code-indent-offset 2)
   :ensure)
 
+(use-package rjsx-mode
+  :ensure
+  :after (lsp-mode)
+  :mode ("\\.js\\'" . rjsx-mode)
+  :hook (js2-mode . lsp)
+  :init (setq js-indent-level 2
+              js2-strict-missing-semi-warning nil
+              js2-missing-semi-one-line-override nil))
+
 (use-package js2-mode
+  :disabled
   :ensure
   :after (lsp-mode)
   :mode ("\\.js\\'" . js2-mode)

@@ -38,7 +38,8 @@
 (use-package column-enforce-mode
   :ensure
   :diminish column-enforce-mode
-  :init (setq column-enfore-column 80)
+  :init (setq column-enforce-column 79
+              column-enforce-comments nil)
   :config (global-column-enforce-mode t))
 
 (use-package string-inflection
