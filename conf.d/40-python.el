@@ -17,6 +17,7 @@
   :after (lsp-mode)
   :mode ("\\.py\\'" . python-mode)
   :ensure
+  :config
   :hook (python-mode . lsp)
   :custom (tab-width nby/python-indentation-size)
   (py-indent-offset nby/python-indentation-size))

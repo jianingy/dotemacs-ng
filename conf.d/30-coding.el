@@ -126,8 +126,7 @@
   :ensure
   :after lsp-mode
   :config
-  (setq lsp-ui-sideline-ignore-duplicate t)
-  :hook (lsp-mode . lsp-ui-mode))
+  (setq lsp-ui-sideline-ignore-duplicate t))
 
 (use-package company-lsp
   :ensure
