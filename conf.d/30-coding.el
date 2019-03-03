@@ -87,6 +87,8 @@
                                       "db/projectile-cache.el")
         projectile-completion-system 'ivy
         projectile-file-exists-remote-cache-expire nil)
+  :config
+  (add-to-list 'projectile-globally-ignored-directories "build")
   :config (projectile-mode))
 
 ;; cannot use requires here???
