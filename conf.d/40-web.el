@@ -20,17 +20,24 @@
   :config
   (add-to-list 'company-backends 'company-tern))
 
+(use-package css-mode
+  :ensure
+  :config
+  (setq css-indent-offset 2))
+
 (use-package web-mode
   :mode (("\\.html\\'" . web-mode)
+         ("\\.wxml\\'" . web-mode)
+         ("\\.wxss\\'" . css-mode)
          ("\\.vue\\'" . web-mode))
   :init
-  (setq web-mode-markup-indent-offset 4
+  (setq web-mode-markup-indent-offset 2
         web-mode-style-padding 1
         web-mode-script-padding 1
         web-mode-block-padding 0
-        web-mode-css-indent-offset 4
+        web-mode-css-indent-offset 2
         web-mode-enable-css-colorization t
-        web-mode-code-indent-offset 4)
+        web-mode-code-indent-offset 2)
   :ensure)
 
 (use-package rjsx-mode
@@ -45,9 +52,9 @@
       (flycheck-add-next-checker 'lsp-ui '(error . javascript-eslint))))
   :hook ((rjsx-mode . lsp)
          (rjsx-mode . nby/setup-rjsx-flycheck-eslint))
-  :init (setq js-indent-level 4
-              js2r-prefered-quote-type 4
-              sgml-basic-offset 4
+  :init (setq js-indent-level 2
+              js2r-prefered-quote-type 2
+              sgml-basic-offset 2
               js2-strict-missing-semi-warning t
               js2-missing-semi-one-line-override t))
 
@@ -58,7 +65,7 @@
   :after (lsp-mode)
   :mode ("\\.js\\'" . js2-mode)
   :hook (js2-mode . lsp)
-  :init (setq js-indent-level 4
+  :init (setq js-indent-level 2
               js2-strict-missing-semi-warning nil
               js2-missing-semi-one-line-override nil))
 
@@ -66,7 +73,7 @@
   :disabled
   :mode ("\\.vue\\'" . vue-mode)
   :ensure
-  :init (setq js-indent-level 4
+  :init (setq js-indent-level 2
               js2-strict-missing-semi-warning nil
               js2-missing-semi-one-line-override nil)
   :config

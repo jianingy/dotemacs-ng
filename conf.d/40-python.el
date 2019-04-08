@@ -43,7 +43,6 @@
 (use-package ein
   :ensure
   :bind (:map ein:notebook-mode-map
-
               ("C-c C-x C-c" . comment-region)
               ("C-c C-x C-d" . uncomment-region))
   :init
@@ -51,6 +50,11 @@
   :config
   (unbind-key "C-c C-x" ein:notebook-mode-map))
 
+
+(use-package pyimpsort
+  :ensure)
+;  :bind (:map python-mode-map
+;              "C-c i" . pyimpsort-buffer))
 
 (provide '40-python)
 ;;; 40-python ends here

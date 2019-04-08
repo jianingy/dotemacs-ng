@@ -71,9 +71,6 @@
   :config
   (load-theme 'spolsky t))
 
-(use-package color-theme
-  :ensure)
-
 (use-package tangotango-theme
   :ensure
   :after color-theme
