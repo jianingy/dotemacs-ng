@@ -43,7 +43,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (color-theme yasnippet-snippets yaml-mode xref-js2 window-numbering web-mode use-package telephone-line tangotango-theme symbol-overlay string-inflection rust-playground rjsx-mode rainbow-delimiters pyvenv python-mode popwin platformio-mode plantuml-mode pangu-spacing ov org-bullets nlinum-hl nginx-mode monokai-theme markdown-mode+ magit lv lsp-vue lsp-ui lsp-rust lsp-javascript-typescript load-dir json-mode js2-refactor ivy helm-projectile helm-bm haskell-mode git-gutter-fringe+ ghub frame-local flycheck-pos-tip flycheck-irony flycheck-color-mode-line expand-region ein edit-server dimmer dashboard company-nginx company-lsp company-irony column-enforce-mode buffer-move boxquote avy)))
+    (color-theme-modern color-theme yasnippet-snippets yaml-mode xref-js2 window-numbering web-mode use-package telephone-line tangotango-theme symbol-overlay string-inflection rust-playground rjsx-mode rainbow-delimiters pyvenv python-mode popwin platformio-mode plantuml-mode pangu-spacing ov org-bullets nlinum-hl nginx-mode monokai-theme markdown-mode+ magit lv lsp-vue lsp-ui lsp-rust lsp-javascript-typescript load-dir json-mode js2-refactor ivy helm-projectile helm-bm haskell-mode git-gutter-fringe+ ghub frame-local flycheck-pos-tip flycheck-irony flycheck-color-mode-line expand-region ein edit-server dimmer dashboard company-nginx company-lsp company-irony column-enforce-mode buffer-move boxquote avy)))
  '(sql-postgres-options (quote ("-P" "pager=off" "-w"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

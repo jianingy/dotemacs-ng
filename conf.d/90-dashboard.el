@@ -12,7 +12,10 @@
   :init (setq dashboard-banner-logo-title
               (format "Emacs starts in %.2f seconds. "
                       (- (float-time) nby/startup-timestamp))
+              dashboard-center-content t
               show-week-agenda-p t
+              dashboard-startup-banner
+              (expand-file-name "~/.emacs.d/media/logo.png")
               dashboard-items '((agenda  . 5)
                                 (projects . 5)
                                 (bookmarks . 5)

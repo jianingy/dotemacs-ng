@@ -29,6 +29,7 @@
   :mode (("\\.html\\'" . web-mode)
          ("\\.wxml\\'" . web-mode)
          ("\\.wxss\\'" . css-mode)
+         ("\\.wpy\\'" . web-mode)
          ("\\.vue\\'" . web-mode))
   :init
   (setq web-mode-markup-indent-offset 2
