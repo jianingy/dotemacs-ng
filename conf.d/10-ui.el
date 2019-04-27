@@ -71,9 +71,12 @@
   :config
   (load-theme 'spolsky t))
 
+(use-package color-theme-modern
+  :ensure)
+
 (use-package tangotango-theme
   :ensure
-  :after color-theme
+  :after color-theme-modern
   :if (not window-system)
   :custom-face
   (company-tooltip ((t (:inherit default :foreground "white smoke" :background "#333"))))
