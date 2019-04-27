@@ -267,6 +267,7 @@
 (use-package ov :ensure)
 (use-package frame-local :ensure)
 (use-package icons-in-terminal
+  :if (file-exists-p (expand-file-name "~/.local/share/icons-in-terminal"))
   :load-path
   (lambda () (expand-file-name "~/.local/share/icons-in-terminal"))
   :config
