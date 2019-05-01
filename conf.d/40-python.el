@@ -12,13 +12,17 @@
   (pylookup-program (concat user-conf-dir ".python-environments/default/bin/pylookup.py"))
   (pylookup-db-file (conat user-conf-dir "db/pylookup.db")))
 
-
 (use-package python-mode
   :after (lsp-mode)
   :mode ("\\.py\\'" . python-mode)
   :ensure
-  :config
-  :hook (python-mode . lsp)
+  :init
+  (setq-default lsp-pyls-configuration-sources ["flake8"])
+  (defun nby/python-setup ()
+    (flycheck-disable-checker 'lsp-ui)
+    (flycheck-select-checker 'python-flake8))
+  :hook ((python-mode . lsp)
+         (python-mode . nby/python-setup))
   :custom (tab-width nby/python-indentation-size)
   (py-indent-offset nby/python-indentation-size))
 
@@ -46,7 +50,7 @@
               ("C-c C-x C-c" . comment-region)
               ("C-c C-x C-d" . uncomment-region))
   :init
-  (setq ein:use-auto-complete t)
+  (setq-default ein:use-auto-complete t)
   :config
   (unbind-key "C-c C-x" ein:notebook-mode-map))
 
