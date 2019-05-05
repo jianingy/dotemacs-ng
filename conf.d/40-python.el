@@ -18,11 +18,12 @@
   :ensure
   :init
   (setq-default lsp-pyls-configuration-sources ["flake8"])
-  (defun nby/python-setup ()
-    (flycheck-disable-checker 'lsp-ui)
-    (flycheck-select-checker 'python-flake8))
+  (defun lsp-set-cfg ()
+    (let ((lsp-cfg `(:pyls (:configurationSources ("flake8")))))
+      ;; TODO: check lsp--cur-workspace here to decide per server / project
+      (lsp--set-configuration lsp-cfg)))
   :hook ((python-mode . lsp)
-         (python-mode . nby/python-setup))
+         (lsp-after-initialize . lsp-set-cfg))
   :custom (tab-width nby/python-indentation-size)
   (py-indent-offset nby/python-indentation-size))
 
