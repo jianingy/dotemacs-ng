@@ -8,8 +8,8 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq-default indent-tabs-mode nil) ;; dont use tabe in most cases
-(custom-set-variables '(compilation-scroll-output t))
+(setq-default indent-tabs-mode nil          ;; dont use tabe in most cases
+              compilation-scroll-output t)
 (electric-indent-mode t)
 ;; delete trailing whitespace, hope it's safe
 (add-hook 'before-save-hook #'(lambda () (delete-trailing-whitespace)))
