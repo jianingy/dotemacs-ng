@@ -17,13 +17,13 @@
   :mode ("\\.py\\'" . python-mode)
   :ensure
   :init
-  (setq-default lsp-pyls-configuration-sources ["flake8"])
-  (defun lsp-set-cfg ()
-    (let ((lsp-cfg `(:pyls (:configurationSources ("flake8")))))
-      ;; TODO: check lsp--cur-workspace here to decide per server / project
-      (lsp--set-configuration lsp-cfg)))
-  :hook ((python-mode . lsp)
-         (lsp-after-initialize . lsp-set-cfg))
+  (setq-default
+   lsp-clients-python-command '("pyls" "-v" "--log-file" "/tmp/pyls.log")
+   lsp-pyls-configuration-sources ["flake8"]
+   lsp-pyls-plugins-pycodestyle-enabled t
+   lsp-pyls-plugins-pyflakes-enabled t
+   lsp-pyls-plugins-pylint-enabled nil)
+  :hook (python-mode . lsp)
   :custom (tab-width nby/python-indentation-size)
   (py-indent-offset nby/python-indentation-size))
 

@@ -139,6 +139,10 @@
 ;;
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package east-asian-ambiguous
+  :load-path "site-lisp/east-asian-ambiguous"
+  :config
+  (set-east-asian-ambiguous-width 2))
 
 (defvar nby/x-font-latin "Sans"
   "Font for english characters.")
@@ -151,7 +155,8 @@
 
 ;; refer to http://baohaojun.github.io/perfect-emacs-chinese-font.html
 (when nby/chinese-font-rescales
-  (add-to-list 'face-font-rescale-alist nby/chinese-font-rescales))
+  (dolist (rescale nby/chinese-font-rescales)
+    (add-to-list 'face-font-rescale-alist rescale)))
 
 ;; set xft font when we are using window system
 (when window-system
@@ -166,7 +171,6 @@
         (set-fontset-font (frame-parameter nil 'font)
                           charset
                           nby/x-font-cjk))))
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;

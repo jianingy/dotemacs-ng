@@ -3,7 +3,6 @@ db/*
 auto-save-list
 .python-environments
 *.elc
-site-lisp
 request
 wanderlust
 .lsp-session*
