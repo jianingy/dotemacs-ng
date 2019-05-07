@@ -111,7 +111,6 @@
 
 (menu-bar-mode -1)
 (custom-set-variables
- '(custom-file (nby/find-local-config '(".usercustom.el" "_usercustom.el")))
  '(current-language-environment "UTF-8")
  '(left-fringe-width 11)                   ;; left fringe width
  '(right-fringe-width 11)                  ;; right fringe width
@@ -142,6 +141,7 @@
 (use-package east-asian-ambiguous
   :load-path "site-lisp/east-asian-ambiguous"
   :config
+  (message "[config] set east asian ambiguous width to %s" 2)
   (set-east-asian-ambiguous-width 2))
 
 (defvar nby/x-font-latin "Sans"
@@ -160,7 +160,7 @@
 
 ;; set xft font when we are using window system
 (when window-system
-  (message "set latin font to '%s', set cjk font to '%s'"
+  (message "[config] set latin font to '%s', set cjk font to '%s'"
            nby/x-font-latin
            nby/x-font-cjk)
   (if nby/x-font-latin

@@ -2,7 +2,7 @@
 
 (defun nby/find-local-config (c)
   "Find first exist directory in list C."
-  (car (remove-if-not'file-exists-p
+  (car (remove-if-not 'file-exists-p
         (mapcar (lambda (x) (concat user-home-dir "/" x)) c))))
 
 (defun nby/safe-load (filename)

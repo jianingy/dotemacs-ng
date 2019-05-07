@@ -1,7 +1,6 @@
 ; east asian ambiguous settings
 
 (defun set-east-asian-ambiguous-width (width)
-  (message "east asian ambiguous width set to %s" width)
   (cond ((= emacs-major-version 22) (set-east-asian-ambiguous-width-22 width))
         ((> emacs-major-version 22) (set-east-asian-ambiguous-width-23 width))))
 
