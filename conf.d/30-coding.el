@@ -187,4 +187,11 @@
   :ensure
   :mode (("\\.json\\'" . json-mode)))
 
+
+(use-package dumb-jump
+  :ensure
+  :bind (("M-." . dumb-jump-go)
+         ("M-," . dumb-jump-back))
+  :config (setq dumb-jump-selector 'helm))
+
 ;;; ends here

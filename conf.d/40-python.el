@@ -58,8 +58,6 @@
 
 (use-package pyimpsort
   :ensure)
-;  :bind (:map python-mode-map
-;              "C-c i" . pyimpsort-buffer))
 
 (provide '40-python)
 ;;; 40-python ends here
