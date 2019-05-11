@@ -12,6 +12,7 @@
   :init (setq dashboard-banner-logo-title
               (format "Emacs starts in %.2f seconds. "
                       (- (float-time) nby/startup-timestamp))
+              initial-buffer-choice (lambda () (get-buffer "*dashboard*"))
               dashboard-center-content t
               show-week-agenda-p t
               dashboard-startup-banner

@@ -264,22 +264,31 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; Sidebar
+;; Treemacs
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package ov :ensure)
-(use-package frame-local :ensure)
-(use-package icons-in-terminal
-  :if (file-exists-p (expand-file-name "~/.local/share/icons-in-terminal"))
-  :load-path
-  (lambda () (expand-file-name "~/.local/share/icons-in-terminal"))
+(use-package treemacs
+  :ensure
   :config
-  (insert (icons-in-terminal 'oct_flame)))
-(use-package sidebar
-  :after (ov frame-local icons-in-terminal projectile)
-  :bind (("C-x t" . sidebar-buffers-open))
-  :init (setq sidebar-show-hidden-files nil)
-  :load-path "site-lisp/sidebar")
+  (setq-default treemacs-space-between-root-nodes nil
+                treemacs-sorting 'alphabetic-desc
+                treemacs-fringe-indicator-mode nil
+                treemacs-follow-mode t
+                treemacs-filewatch-mode t)
+  (treemacs-resize-icons 18)
+  :hook
+  (emacs-startup . treemacs)
+  :custom-face
+  (treemacs-root-face ((t (:height 1.1)))))
+
+
+(use-package treemacs-projectile
+  :after treemacs projectile
+  :ensure)
+
+(use-package treemacs-magit
+  :after treemacs magit
+  :ensure)
 
 ;;; ends here

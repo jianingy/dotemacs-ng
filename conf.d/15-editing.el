@@ -76,6 +76,7 @@
 (global-set-key (kbd "C-x F")          'nby/find-file-as-root)
 (global-set-key (kbd "M-p")            'backward-sexp)
 (global-set-key (kbd "M-n")            'forward-sexp)
+(global-set-key (kbd "C-S-k")          'kill-current-buffer)
 
 (use-package boxquote
   :ensure
