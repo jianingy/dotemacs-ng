@@ -279,6 +279,8 @@
   (treemacs-resize-icons 18)
   :hook
   (emacs-startup . treemacs)
+  :bind
+  ("M-ESC" . treemacs)
   :custom-face
   (treemacs-root-face ((t (:height 1.1)))))
 
