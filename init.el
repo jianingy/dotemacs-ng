@@ -7,8 +7,12 @@
   (setq debug-on-error t))
 
 ;; install use-package
-(setq package-archives '(("gnu"   . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-                         ("melpa" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
+(setq-default package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+                                 ("marmalade" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/marmalade/")
+                                 ("melpa-stable" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa-stable/")
+                                 ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+                                 ("org" . "http://orgmode.org/elpa/")))
+
 (require 'package)
 (setq package-enable-at-startup nil)
 (package-initialize)
@@ -37,4 +41,3 @@
              :config
              (setq load-dirs
                    (concat (file-name-as-directory user-conf-dir) "conf.d")))
-

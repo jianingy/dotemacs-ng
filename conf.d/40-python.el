@@ -15,6 +15,7 @@
 (use-package python-mode
   :after (lsp-mode)
   :mode ("\\.py\\'" . python-mode)
+  :interpreter ("python" . python-mode)
   :ensure
   :init
   (setq-default

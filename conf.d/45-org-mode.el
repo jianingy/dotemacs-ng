@@ -1,6 +1,9 @@
 (use-package org
   :ensure
   :init
+  (require 'org-tempo)
+  (require 'ob-python)
+  (require 'ob-scala)
   (defun nby/org-agenda-breadcrumb ()
     (concat
      "["
@@ -52,3 +55,6 @@
   :init
   (setq org-bullets-bullet-list '("▸" "◆" "●" "○"))
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
+(use-package ox-s5
+  :ensure org-plus-contrib)

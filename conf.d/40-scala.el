@@ -5,12 +5,8 @@
   :interpreter
   ("scala" . scala-mode))
 
-
-(use-package lsp-scala
-  :ensure
-  :after (lsp scala-mode))
-
 (use-package sbt-mode
+  :ensure
   :commands sbt-start sbt-command
   :config
   ;; WORKAROUND: https://github.com/ensime/emacs-sbt-mode/issues/31
@@ -19,3 +15,9 @@
    'minibuffer-complete-word
    'self-insert-command
    minibuffer-local-completion-map))
+
+
+(use-package ensime
+  :ensure
+  :config
+  (setq-default ensime-startup-notification nil))

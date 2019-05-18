@@ -147,6 +147,9 @@
 (defvar nby/x-font-latin "Sans"
   "Font for english characters.")
 
+(defvar nby/x-font-symbol "Sans"
+  "Font for symbols characters.")
+
 (defvar nby/x-font-cjk "Sans"
   "Font for CJK characters.")
 
@@ -166,8 +169,12 @@
   (if nby/x-font-latin
       (set-face-attribute 'default nil :font nby/x-font-latin))
 
+  (if nby/x-font-symbol
+        (set-fontset-font (frame-parameter nil 'font)
+                          'symbol
+                          nby/x-font-symbol))
   (if nby/x-font-cjk
-      (dolist (charset '(kana han symbol cjk-misc bopomofo))
+      (dolist (charset '(kana han cjk-misc bopomofo))
         (set-fontset-font (frame-parameter nil 'font)
                           charset
                           nby/x-font-cjk))))
