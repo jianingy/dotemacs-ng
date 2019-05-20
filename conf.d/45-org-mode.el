@@ -1,9 +1,6 @@
 (use-package org
   :ensure
   :init
-  (require 'org-tempo)
-  (require 'ob-python)
-  (require 'ob-scala)
   (defun nby/org-agenda-breadcrumb ()
     (concat
      "["
@@ -32,6 +29,10 @@
      ("WORKING" :foreground "white" :background "firebrick")
      ("SUSPEND" :foreground "firebrick")
      ("VERIFIED" :foreground "lime green" :weight normal)))
+  :config
+  (require 'org-tempo)
+  (require 'ob-python)
+  (require 'ob-scala)
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
          ("C-c c" . org-capture)))
