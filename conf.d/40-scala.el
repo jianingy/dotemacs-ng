@@ -9,7 +9,7 @@
   :ensure
   :commands sbt-start sbt-command
   :init
-  (defconst scala-mode-symbols
+  (defconst scala-mode-symbols-alist
     '(("<=" . ?≤)
       (">=" . ?≥)
       ("->" . ?→)
@@ -17,7 +17,7 @@
       ("=>" . ?⇒)
       ("<=>" . ?⇔)))
   (defun setup-scala-mode ()
-    (setq prettify-symbols-alist 'scala-mode-symbols)
+    (setq prettify-symbols-alist scala-mode-symbols-alist)
     (prettify-symbols-mode))
   :hook (scala-mode . setup-scala-mode)
   :config
