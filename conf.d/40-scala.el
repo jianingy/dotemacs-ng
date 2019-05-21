@@ -8,6 +8,18 @@
 (use-package sbt-mode
   :ensure
   :commands sbt-start sbt-command
+  :init
+  (defconst scala-mode-symbols
+    '(("<=" . ?≤)
+      (">=" . ?≥)
+      ("->" . ?→)
+      ("<-" . ?←)
+      ("=>" . ?⇒)
+      ("<=>" . ?⇔)))
+  (defun setup-scala-mode ()
+    (setq prettify-symbols-alist 'scala-mode-symbols)
+    (prettify-symbols-mode))
+  :hook (scala-mode . setup-scala-mode)
   :config
   ;; WORKAROUND: https://github.com/ensime/emacs-sbt-mode/issues/31
   ;; allows using SPACE when in the minibuffer

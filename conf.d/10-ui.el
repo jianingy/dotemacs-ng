@@ -20,11 +20,6 @@
   (company-tooltip-selection ((t (:foreground "black" :background "deep sky blue"))))
   (company-tooltip-common ((t (:foreground "orange"))))
   (company-tooltip-common-selection ((t (:foreground "black"))))
-  (org-level-1 ((t (:inherit default :height 1.2 :family "Century Schoolbook L"))))
-  (org-level-2 ((t (:inherit default :height 1.1))))
-  (org-level-3 ((t (:height 1.0))))
-  (org-level-4 ((t (:height 1.0))))
-  (org-document-title ((t (:inherit default :height 1.5 :family "Century Schoolbook L"))))
   (vertical-border ((t (:foreground "#333333"))))
   (nlinum-current-line ((t (:foreground "orange"))))
   :init
@@ -97,7 +92,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-(set-language-environment 'UTF-8)
+(set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 (set-buffer-file-coding-system 'utf-8-unix)
 (set-clipboard-coding-system 'utf-8-unix)
@@ -106,8 +101,8 @@
 (set-next-selection-coding-system 'utf-8-unix)
 (set-selection-coding-system 'utf-8-unix)
 (set-terminal-coding-system 'utf-8-unix)
-(prefer-coding-system 'utf-8)
- (setq locale-coding-system 'utf-8)
+(prefer-coding-system 'utf-8-unix)
+(setq locale-coding-system 'utf-8-unix)
 
 (menu-bar-mode -1)
 (custom-set-variables
@@ -136,7 +131,7 @@
 ;; | 中文English | English中文 | 中文        | English     |
 ;; | English中文 | 中文        | English     | 中文English |
 ;;
-;;
+;; ℕ𝓟⧺×≠≥≤±¬∨∧∃∀λ⟿⟹⊥⊤⊢   x ⟹ => {y} => m ⇒ y ⟶ →
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package east-asian-ambiguous
   :load-path "site-lisp/east-asian-ambiguous"
@@ -144,40 +139,61 @@
   (message "[config] set east asian ambiguous width to %s" 2)
   (set-east-asian-ambiguous-width 2))
 
-(defvar nby/x-font-latin "Sans"
+(defvar nby/x-font-latin "Consolas"
   "Font for english characters.")
 
-(defvar nby/x-font-symbol "Sans"
+(defvar nby/x-font-symbol "Unifont"
   "Font for symbols characters.")
 
-(defvar nby/x-font-cjk "Sans"
+(defvar nby/x-font-cjk "Noto Sans CJK SC"
   "Font for CJK characters.")
 
-(defvar nby/chinese-font-rescales ()
+(defvar nby/doc-font-latin "Work Sans"
+  "Font for english characters.")
+
+(defvar nby/doc-font-symbol "Symbol"
+  "Font for symbols characters.")
+
+(defvar nby/doc-font-mono "mono"
+  "Font for mono characters.")
+
+(defvar nby/doc-font-cjk "Alibaba Sans"
+  "Font for CJK characters.")
+
+(defvar nby/font-rescales ()
   "Rescale value for chinese to match latin fonts")
 
 ;; refer to http://baohaojun.github.io/perfect-emacs-chinese-font.html
-(when nby/chinese-font-rescales
-  (dolist (rescale nby/chinese-font-rescales)
+(when nby/font-rescales
+  (dolist (rescale nby/font-rescales)
     (add-to-list 'face-font-rescale-alist rescale)))
 
 ;; set xft font when we are using window system
 (when window-system
+  ;; set default fontset
+  (set-face-font 'default nby/x-font-latin)
+  (set-fontset-font t 'unicode nby/x-font-cjk nil 'append)
+  (set-fontset-font t 'unicode nby/x-font-symbol nil 'append)
+  (dolist (charset '(kana han cjk-misc bopomofo))
+    (set-fontset-font t charset nby/x-font-cjk))
+
+  ;; create fontset for document
+  (let* ((fontset-name
+          (create-fontset-from-ascii-font nby/doc-font-latin nil "document")))
+    (set-fontset-font fontset-name 'unicode nby/doc-font-latin)
+    (set-fontset-font fontset-name 'unicode nby/doc-font-cjk nil 'append)
+    (dolist (charset '(kana han cjk-misc bopomofo))
+      (set-fontset-font fontset-name charset (font-spec :family nby/doc-font-cjk)))
+    (message "fontset %s created." fontset-name ))
+  (set-face-attribute 'variable-pitch nil
+                      :fontset "fontset-document"
+                      :font "fontset-document")
+
+
+
   (message "[config] set latin font to '%s', set cjk font to '%s'"
            nby/x-font-latin
-           nby/x-font-cjk)
-  (if nby/x-font-latin
-      (set-face-attribute 'default nil :font nby/x-font-latin))
-
-  (if nby/x-font-symbol
-        (set-fontset-font (frame-parameter nil 'font)
-                          'symbol
-                          nby/x-font-symbol))
-  (if nby/x-font-cjk
-      (dolist (charset '(kana han cjk-misc bopomofo))
-        (set-fontset-font (frame-parameter nil 'font)
-                          charset
-                          nby/x-font-cjk))))
+           nby/x-font-cjk))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
