@@ -170,26 +170,29 @@
 
 ;; set xft font when we are using window system
 (when window-system
+  (set-face-attribute 'default nil :font nby/x-font-latin)
+  (dolist (charset '(kana han symbol cjk-misc bopomofo))
+    (set-fontset-font (frame-parameter nil 'font)
+                      charset
+                      nby/x-font-cjk))
   ;; set default fontset
-  (set-face-font 'default nby/x-font-latin)
-  (set-fontset-font t 'unicode nby/x-font-cjk nil 'append)
-  (set-fontset-font t 'unicode nby/x-font-symbol nil 'append)
-  (dolist (charset '(kana han cjk-misc bopomofo))
-    (set-fontset-font t charset nby/x-font-cjk))
+  ;; (set-face-font 'default nby/x-font-latin)
+  ;; (set-fontset-font t 'unicode nby/x-font-cjk nil 'append)
+  ;; (set-fontset-font t 'unicode nby/x-font-symbol nil 'append)
+  ;; (dolist (charset '(kana han cjk-misc bopomofo))
+  ;;   (set-fontset-font t charset nby/x-font-cjk))
 
-  ;; create fontset for document
-  (let* ((fontset-name
-          (create-fontset-from-ascii-font nby/doc-font-latin nil "document")))
-    (set-fontset-font fontset-name 'unicode nby/doc-font-latin)
-    (set-fontset-font fontset-name 'unicode nby/doc-font-cjk nil 'append)
-    (dolist (charset '(kana han cjk-misc bopomofo))
-      (set-fontset-font fontset-name charset (font-spec :family nby/doc-font-cjk)))
-    (message "fontset %s created." fontset-name ))
-  (set-face-attribute 'variable-pitch nil
-                      :fontset "fontset-document"
-                      :font "fontset-document")
-
-
+  ;; ;; create fontset for document
+  ;; (let* ((fontset-name
+  ;;         (create-fontset-from-ascii-font nby/doc-font-latin nil "document")))
+  ;;   (set-fontset-font fontset-name 'unicode nby/doc-font-latin)
+  ;;   (set-fontset-font fontset-name 'unicode nby/doc-font-cjk nil 'append)
+  ;;   (dolist (charset '(kana han cjk-misc bopomofo))
+  ;;     (set-fontset-font fontset-name charset (font-spec :family nby/doc-font-cjk)))
+  ;;   (message "fontset %s created." fontset-name ))
+  ;; (set-face-attribute 'variable-pitch nil
+  ;;                     :fontset "fontset-document"
+  ;;                     :font "fontset-document")
 
   (message "[config] set latin font to '%s', set cjk font to '%s'"
            nby/x-font-latin
