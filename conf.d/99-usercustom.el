@@ -7,3 +7,5 @@
 (when user-local-file
   (message "[config] loading user local file %s" user-local-file)
   (nby/safe-load user-local-file))
+
+;; (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))

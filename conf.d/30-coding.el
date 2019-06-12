@@ -129,6 +129,7 @@
 
 (use-package lsp-mode
   :ensure
+  :after yasnippet
   :init
   (setq lsp-auto-guess-root t
         lsp-prefer-flymake nil)

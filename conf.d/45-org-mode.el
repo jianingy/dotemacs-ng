@@ -38,7 +38,6 @@
   :config
   (require 'org-tempo)
   (require 'ob-python)
-  (require 'ob-scala)
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
          ("C-c c" . org-capture)))

@@ -1,11 +1,9 @@
 (use-package scala-mode
   :ensure
-  :interpreter
-  ("scala" . scala-mode))
-
-(use-package sbt-mode
-  :ensure
-  :commands sbt-start sbt-command
+  :mode "\\.s\\(cala\\|bt\\)$"
+  :interpreter ("scala" . scala-mode)
+  :hook ((scala-mode . scala-mode-startup)
+         (scala-mode . lsp))
   :init
   (defconst scala-mode-symbols-alist
     '(("<=" . ?≤)
@@ -14,10 +12,16 @@
       ("<-" . ?←)
       ("=>" . ?⇒)
       ("<=>" . ?⇔)))
-  (defun setup-scala-mode ()
+  (defun scala-mode-startup ()
     (setq prettify-symbols-alist scala-mode-symbols-alist)
     (prettify-symbols-mode))
-  :hook (scala-mode . setup-scala-mode)
+  :config
+  (setq lsp-prefer-flymake nil))
+
+
+(use-package sbt-mode
+  :ensure
+  :commands sbt-start sbt-command
   :config
   ;; WORKAROUND: https://github.com/ensime/emacs-sbt-mode/issues/31
   ;; allows using SPACE when in the minibuffer
@@ -27,7 +31,8 @@
    minibuffer-local-completion-map))
 
 
-(use-package ensime
-  :ensure
-  :config
-  (setq-default ensime-startup-notification nil))
+;; (use-package ensime
+;;   :disabled
+;;   :ensure
+;;   :config
+;;   (setq-default ensime-startup-notification nil))

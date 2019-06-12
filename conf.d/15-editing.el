@@ -160,19 +160,22 @@
 ;; YASnippet
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(use-package yasnippet
-  :ensure yasnippet
-  :pin melpa-stable
+(use-package yasnippet                  ; Snippets
+  :ensure t
+  :commands yas-expand-snippet
   :diminish yas/minor-mode
-  :bind ("C-<tab>" . yas/expand)
+  :bind ("C-<tab>" . yas-expand)
   :config
-  (add-to-list 'yas/root-directory (concat user-conf-dir "snippets"))
-  (yas/reload-all)
-  (yas/global-mode 1))
+  (setq-default
+   yas-verbosity 1                      ; No need to be so verbose
+   yas-wrap-around-region t)
+  (with-eval-after-load 'yasnippet
+    (setq-default yas-snippet-dirs '(yasnippet-snippets-dir)))
+  (yas-reload-all)
+  (yas-global-mode))
 
-(use-package yasnippet-snippets
-  :ensure
-  :pin melpa-stable
+(use-package yasnippet-snippets         ; Collection of snippets
+  :ensure t
   :after yasnippet)
 
 

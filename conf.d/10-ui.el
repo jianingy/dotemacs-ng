@@ -171,6 +171,7 @@
 ;; set xft font when we are using window system
 (when window-system
   (set-face-attribute 'default nil :font nby/x-font-latin)
+  (set-face-attribute 'fixed-pitch nil :font nby/x-font-latin)
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font)
                       charset
