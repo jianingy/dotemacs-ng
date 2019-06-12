@@ -24,10 +24,6 @@
   :bind (("C-c n" . next-error))
   :config (global-flycheck-mode))
 
-(use-package flycheck-color-mode-line
-  :ensure
-  :hook (flycheck-mode . flycheck-color-mode-line-mode))
-
 (use-package flycheck-pos-tip
   :after flycheck
   :ensure

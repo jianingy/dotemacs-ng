@@ -11,7 +11,6 @@
   :ensure
   :if window-system
   :custom-face
-  (mode-line ((t (:box (:line-width 2 :color "#49483E" :style nil)))))
   (company-tooltip ((t (:inherit default :foreground "white smoke" :background "#333"))))
   (company-scrollbar-bg ((t (:background "#333"))))
   (company-scrollbar-fg ((t (:background "deep sky blue"))))
@@ -217,11 +216,16 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; icons-in-terminal
+;; icons
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package icons-in-terminal
   :load-path "site-lisp/icons-in-terminal")
+
+(use-package all-the-icons
+  :ensure
+  :config
+  (setq inhibit-compacting-font-caches t))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -234,16 +238,17 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; smart-mode-line: A powerful and beautiful mode-line for Emacs.
+;; doom-modeline: A powerful and beautiful mode-line for Emacs.
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package smart-mode-line
-  :disabled
+(use-package doom-modeline
   :ensure
-  :init (setq sml/no-confirm-load-theme t
-              sml/theme 'respectful)
-  :config (sml/setup))
+  :after all-the-icons
+  :init
+  (setq-default doom-modeline-height 20)
+  :config
+  (doom-modeline-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -292,10 +297,6 @@
   :init (setq dimmer-exclusion-regexp
               "^\*helm.*\\|^\*Calendar.*\\|^\*Minibuf-.*")
   :config (dimmer-mode))
-
-(use-package telephone-line
-  :ensure
-  :config (telephone-line-mode 1))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;

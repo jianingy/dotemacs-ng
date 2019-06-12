@@ -13,7 +13,6 @@
   (pylookup-db-file (conat user-conf-dir "db/pylookup.db")))
 
 (use-package python-mode
-  :after (lsp-mode)
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python" . python-mode)
   :ensure
