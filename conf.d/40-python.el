@@ -18,6 +18,7 @@
   :ensure
   :init
   (setq-default
+   flycheck-flake8rc (expand-file-name "~/.config/flake8")
    lsp-clients-python-command '("pyls" "-v" "--log-file" "/tmp/pyls.log")
    lsp-pyls-configuration-sources ["flake8"]
    lsp-pyls-plugins-pycodestyle-enabled t
