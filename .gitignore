@@ -1,9 +1,11 @@
-elpa
-db/*
-auto-save-list
-.python-environments
+.*
 *.elc
+elpa
+db
+auto-save-list
 request
 wanderlust
-.lsp-session*
 session.*
+tramp
+irony
+transient

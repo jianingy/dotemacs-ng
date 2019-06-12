@@ -63,4 +63,14 @@ If TAB is not nil, hightlight tab characters"
   `(progn
      ,@(mapcar #'(lambda (x) `(set (make-local-variable (quote ,(car (cadr x)))) ,(cadr (cadr x)))) pairs)))
 
+(defun nby/dwim-tab ()
+  "Do what i mean tab behaviour."
+  (interactive)
+  (let ((pch (char-before)))
+    (cond ((null pch) (indent-for-tab-command))
+          ((null (string-match-p "[^\r\n\t ]" (char-to-string pch)))
+           (indent-for-tab-command))
+          ((eq pch ?.) (company-complete))
+          (t (yas/expand)))))
+
 (provide 'nby)

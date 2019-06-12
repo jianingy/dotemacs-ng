@@ -1,7 +1,5 @@
 (use-package scala-mode
   :ensure
-  :bind (:map scala-mode-map
-              ("C-c C-c" . run-scala))
   :interpreter
   ("scala" . scala-mode))
 

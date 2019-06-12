@@ -13,6 +13,8 @@
 (electric-indent-mode t)
 ;; delete trailing whitespace, hope it's safe
 (add-hook 'before-save-hook #'(lambda () (delete-trailing-whitespace)))
+;;
+(global-set-key (kbd "<tab>") #'nby/dwim-tab)
 
 ;; syntax check
 (use-package flycheck
@@ -77,7 +79,7 @@
 (use-package projectile
   :ensure
   :diminish projectile-mode
-  :requires ivy
+  :after ivy
   :bind-keymap ("C-c p" . projectile-command-map)
   :init
   (setq projectile-enable-caching t
@@ -91,9 +93,9 @@
   (add-to-list 'projectile-globally-ignored-directories "build")
   :config (projectile-mode))
 
-;; cannot use requires here???
 (use-package helm-projectile
   :ensure
+  :after (projectile helm)
   :config (helm-projectile-on))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -109,6 +111,15 @@
               ("C-p" . company-select-previous))
   :init
   (add-hook 'prog-mode-hook 'company-mode))
+
+(use-package company-box
+  :ensure
+  :diminish
+  :after company
+  :hook (company-mode . company-box-mode)
+  :config
+  (setq
+   company-box-icons-alist 'company-box-icons-icons-in-terminal))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -172,7 +183,7 @@
 
 (use-package company-nginx
   :ensure
-  :requires nginx-mode
+  :after (company nginx-mode)
   :config
   (eval-after-load 'nginx-mode
     '(add-hook 'nginx-mode-hook #'company-nginx-keywords)))

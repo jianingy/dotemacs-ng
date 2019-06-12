@@ -164,6 +164,7 @@
   :ensure yasnippet
   :pin melpa-stable
   :diminish yas/minor-mode
+  :bind ("C-<tab>" . yas/expand)
   :config
   (add-to-list 'yas/root-directory (concat user-conf-dir "snippets"))
   (yas/reload-all)
@@ -172,7 +173,7 @@
 (use-package yasnippet-snippets
   :ensure
   :pin melpa-stable
-  :requires yasnippet)
+  :after yasnippet)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

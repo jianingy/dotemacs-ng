@@ -30,7 +30,7 @@
 
 (use-package helm-bm
   :ensure
-  :requires helm
+  :after helm
   :bind (("C-c b" . helm-bm)))
 
 

@@ -28,9 +28,8 @@
   :custom (tab-width nby/python-indentation-size)
   (py-indent-offset nby/python-indentation-size))
 
-
 (use-package pyvenv
-  :after projectile
+  :after (projectile pythn-mode)
   :ensure
   :hook (python-mode . pyvenv-autoload)
   :init
@@ -56,9 +55,9 @@
   :config
   (unbind-key "C-c C-x" ein:notebook-mode-map))
 
-
 (use-package pyimpsort
-  :ensure)
+  :ensure
+  :after python-mode)
 
 (provide '40-python)
 ;;; 40-python ends here
