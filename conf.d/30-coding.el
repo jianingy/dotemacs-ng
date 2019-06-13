@@ -13,8 +13,6 @@
 (electric-indent-mode t)
 ;; delete trailing whitespace, hope it's safe
 (add-hook 'before-save-hook #'(lambda () (delete-trailing-whitespace)))
-;;
-(global-set-key (kbd "<tab>") #'nby/dwim-tab)
 
 ;; syntax check
 (use-package flycheck
@@ -105,8 +103,10 @@
               ([tab] . company-complete-selection)
               ("C-n" . company-select-next)
               ("C-p" . company-select-previous))
-  :init
-  (add-hook 'prog-mode-hook 'company-mode))
+  :custom
+  (company-tooltip-minimum-width 36)
+  (company-tooltip-maximum-width 36)
+  :hook (prog-mode . company-mode))
 
 (use-package company-box
   :ensure

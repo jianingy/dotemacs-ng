@@ -25,6 +25,8 @@
    lsp-pyls-plugins-pyflakes-enabled t
    lsp-pyls-plugins-pylint-enabled nil)
   :hook (python-mode . lsp)
+  :bind (:map python-mode-map
+              ("<tab>" . nby/dwim-tab))
   :custom (tab-width nby/python-indentation-size)
   (py-indent-offset nby/python-indentation-size))
 

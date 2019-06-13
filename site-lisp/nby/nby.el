@@ -73,4 +73,12 @@ If TAB is not nil, hightlight tab characters"
           ((eq pch ?.) (company-complete))
           (t (yas/expand)))))
 
+(defun nby/display-header-as-margin ()
+  (unless (string-match "^\*" (buffer-name))
+    (let ((background (face-attribute 'default :background)))
+      (set-face-attribute 'header-line nil
+                          :background background
+                          :box nil)))
+  (setq header-line-format "  "))
+
 (provide 'nby)

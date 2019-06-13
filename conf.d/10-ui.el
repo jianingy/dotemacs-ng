@@ -7,9 +7,10 @@
 ;; Color Themes & Layout tuning
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(use-package monokai-theme
+(use-package dracula-theme
   :ensure
   :if window-system
+  :after (company nlinum)
   :custom-face
   (company-tooltip ((t (:inherit default :foreground "white smoke" :background "#333"))))
   (company-scrollbar-bg ((t (:background "#333"))))
@@ -19,16 +20,35 @@
   (company-tooltip-selection ((t (:foreground "black" :background "deep sky blue"))))
   (company-tooltip-common ((t (:foreground "orange"))))
   (company-tooltip-common-selection ((t (:foreground "black"))))
+  (doom-modeline-inactive-bar ((t (:background "#373844"))))
+  (nlinum-current-line ((t (:foreground "orange" :slant italic :weight bold))))
+  :init
+  (add-hook 'buffer-list-update-hook 'nby/display-header-as-margin)
+  (add-hook 'emacs-startup-hook  'nby/display-header-as-margin)
+  :config
+  (message "Loading theme dracula")
+  (load-theme 'dracula t))
+
+(use-package monokai-theme
+  :ensure
+  :disabled
+  :if window-system
+  :after (company nlinum)
+  :custom-face
+  (company-tooltip ((t (:inherit default :foreground "white smoke" :background "#333"))))
+  (company-scrollbar-bg ((t (:background "#333"))))
+  (company-scrollbar-fg ((t (:background "deep sky blue"))))
+  (company-tooltip-annotation ((t (:foreground "white smoke"))))
+  (company-tooltip-annotation-selection ((t (:foreground "black"))))
+  (company-tooltip-selection ((t (:foreground "black" :background "deep sky blue"))))
+  (company-tooltip-common ((t (:foreground "orange"))))
+  (company-tooltip-common-selection ((t (:foreground "black"))))
+  (mode-line ((t (:background "#333" :foreground "#75715E" :box nil :weight normal))))
+  (mode-line-highlight ((t (:background "deep sky blue" :foreground "#333" :box nil :weight normal))))
+  (mode-line-inactive ((t (:background "#333" :foreground "#75715E" :box nil :weight normal))))
   (vertical-border ((t (:foreground "#333333"))))
   (nlinum-current-line ((t (:foreground "orange"))))
   :init
-  (defun nby/display-header-as-margin ()
-    (unless (string-match "^\*" (buffer-name))
-      (let ((background (face-attribute 'default :background)))
-        (set-face-attribute 'header-line nil
-                            :background background
-                            :box nil)))
-    (setq header-line-format "  "))
   (add-hook 'buffer-list-update-hook 'nby/display-header-as-margin)
   (add-hook 'emacs-startup-hook  'nby/display-header-as-margin)
   :config
@@ -53,13 +73,6 @@
   (vertical-border ((t (:foreground "#333333"))))
   (nlinum-current-line ((t (:foreground "orange"))))
   :init
-  (defun nby/display-header-as-margin ()
-    (unless (string-match "^\*" (buffer-name))
-      (let ((background (face-attribute 'default :background)))
-        (set-face-attribute 'header-line nil
-                            :background background
-                            :box nil)))
-    (setq header-line-format "  "))
   (add-hook 'buffer-list-update-hook 'nby/display-header-as-margin)
   (add-hook 'emacs-startup-hook  'nby/display-header-as-margin)
   :config
