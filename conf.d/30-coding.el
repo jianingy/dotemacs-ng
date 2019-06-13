@@ -104,8 +104,9 @@
               ("C-n" . company-select-next)
               ("C-p" . company-select-previous))
   :custom
+  (company-tooltip-align-annotations t)
   (company-tooltip-minimum-width 36)
-  (company-tooltip-maximum-width 36)
+  (company-tooltip-maximum-width 78)
   :hook (prog-mode . company-mode))
 
 (use-package company-box
