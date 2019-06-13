@@ -1,11 +1,11 @@
 (use-package org
   :ensure
   :custom-face
-  ;; (org-document-title ((t (:inherit nil :font "fontset-document" :fontset "fontset-document" :height 1.4 ))))
-  ;; (org-level-1 ((t (:inherit nil :font "fontset-document" :fontset "fontset-document" :height 1.3 ))))
-  ;; (org-level-2 ((t (:inherit nil :font "fontset-document" :fontset "fontset-document" :height 1.1))))
-  ;; (org-level-3 ((t (:weight bold :height 1.0))))
-  ;; (org-level-4 ((t (:height 1.0))))
+  (org-document-title ((t (:inherit nil :height 1.0 ))))
+  (org-level-1 ((t (:inherit nil :height 1.0 ))))
+  (org-level-2 ((t (:inherit nil :height 1.0))))
+  (org-level-3 ((t (:weight bold :height 1.0))))
+  (org-level-4 ((t (:height 1.0))))
   :init
   (defun nby/org-agenda-breadcrumb ()
     (concat
