@@ -1,9 +1,9 @@
 (use-package org
   :ensure
   :custom-face
-  (org-document-title ((t (:inherit nil :height 1.0 ))))
-  (org-level-1 ((t (:inherit nil :height 1.0 ))))
-  (org-level-2 ((t (:inherit nil :height 1.0))))
+  (org-document-title ((t (:inherit variable-pitch :height 1.0 ))))
+  (org-level-1 ((t (:height 1.0 ))))
+  (org-level-2 ((t (:height 1.0))))
   (org-level-3 ((t (:weight bold :height 1.0))))
   (org-level-4 ((t (:height 1.0))))
   :init
@@ -52,7 +52,6 @@
                                '((emacs-lisp . t)
                                  (plantuml . t))))
 
-
 (use-package org-bullets
   :ensure
   :after org
@@ -62,3 +61,8 @@
 
 (use-package ox-s5
   :ensure org-plus-contrib)
+
+(use-package mixed-pitch
+  :ensure
+  :hook
+  (org-mode . mixed-pitch-mode))

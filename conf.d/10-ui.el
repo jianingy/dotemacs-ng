@@ -182,34 +182,43 @@
 
 ;; set xft font when we are using window system
 (when window-system
-  (set-face-attribute 'default nil :font nby/x-font-latin)
-  (set-face-attribute 'fixed-pitch nil :font nby/x-font-latin)
-  (dolist (charset '(kana han symbol cjk-misc bopomofo))
-    (set-fontset-font (frame-parameter nil 'font)
-                      charset
-                      nby/x-font-cjk))
-  ;; set default fontset
-  ;; (set-face-font 'default nby/x-font-latin)
-  ;; (set-fontset-font t 'unicode nby/x-font-cjk nil 'append)
-  ;; (set-fontset-font t 'unicode nby/x-font-symbol nil 'append)
-  ;; (dolist (charset '(kana han cjk-misc bopomofo))
-  ;;   (set-fontset-font t charset nby/x-font-cjk))
 
-  ;; ;; create fontset for document
-  ;; (let* ((fontset-name
-  ;;         (create-fontset-from-ascii-font nby/doc-font-latin nil "document")))
-  ;;   (set-fontset-font fontset-name 'unicode nby/doc-font-latin)
-  ;;   (set-fontset-font fontset-name 'unicode nby/doc-font-cjk nil 'append)
+  ;; set default/fixed font
+  ;; (set-face-attribute 'default nil :font nby/x-font-latin)
+  ;; (set-face-attribute 'fixed-pitch nil :font nby/x-font-latin)
+  ;; (let ((fontset (frame-parameter nil 'font)))
   ;;   (dolist (charset '(kana han cjk-misc bopomofo))
-  ;;     (set-fontset-font fontset-name charset (font-spec :family nby/doc-font-cjk)))
-  ;;   (message "fontset %s created." fontset-name ))
-  ;; (set-face-attribute 'variable-pitch nil
-  ;;                     :fontset "fontset-document"
-  ;;                     :font "fontset-document")
+  ;;     (set-fontset-font fontset charset nby/x-font-cjk))
+  ;;   (set-fontset-font fontset 'symbol nby/x-font-symbol)
+  ;;   (set-fontset-font fontset 'unicode nby/x-font-symbol nil 'append)
 
-  (message "[config] set latin font to '%s', set cjk font to '%s'"
-           nby/x-font-latin
-           nby/x-font-cjk))
+  (setq use-default-font-for-symbols nil
+        default-frame-alist '((font . "Monospace")))
+
+  ;; set default font
+  (let ((fontset (create-fontset-from-fontset-spec standard-fontset-spec)))
+    (message "[config] set standard-fontset %s for emacs" fontset)
+    (set-fontset-font fontset 'unicode nby/x-font-symbol nil 'prepend)
+    (set-fontset-font fontset 'latin nby/x-font-latin nil 'prepend)
+    (set-fontset-font fontset 'symbol nby/x-font-symbol nil 'prepend)
+    (dolist (charset '(kana han cjk-misc hangul kanbun bopomofo))
+      (set-fontset-font fontset charset nby/x-font-cjk nil 'prepend))
+    (add-to-list 'default-frame-alist (cons 'font fontset))
+    (add-to-list 'initial-frame-alist (cons 'font fontset)))
+
+  ;; set variable font
+  (let ((fontset (create-fontset-from-fontset-spec
+                  "-*-fixed-medium-r-normal-*-16-*-*-*-*-*-fontset-variable" t)))
+    (message "[config] create fontset %s for documentation" fontset)
+    (set-fontset-font fontset 'unicode nby/doc-font-cjk)
+    (set-fontset-font fontset 'latin nby/doc-font-latin nil 'prepend)
+    (set-fontset-font fontset 'symbol nby/x-font-symbol nil 'prepend)
+    (dolist (charset '(kana han cjk-misc hangul kanbun bopomofo))
+      (message "%s %s %s" fontset charset nby/doc-font-cjk)
+      (set-fontset-font fontset charset nby/doc-font-cjk nil 'prepend))
+    (set-face-attribute 'variable-pitch nil :font fontset))
+
+  (message "[config] fontset configuration ok"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
