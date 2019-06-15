@@ -1,11 +1,12 @@
 (use-package org
   :ensure
   :custom-face
-  (org-document-title ((t (:inherit variable-pitch :height 1.0 ))))
-  (org-level-1 ((t (:height 1.0 ))))
-  (org-level-2 ((t (:height 1.0))))
-  (org-level-3 ((t (:weight bold :height 1.0))))
-  (org-level-4 ((t (:height 1.0))))
+  (org-document-title ((t (:height 1.3 ))))
+  (org-level-1 ((t (:weight normal :height 1.2 ))))
+  (org-level-2 ((t (:weight normal :height 1.1))))
+  (org-level-3 ((t (:weight normal :height 1.0))))
+  (org-level-4 ((t (:weight normal :height 1.0))))
+  (org-block ((t (:inherit default))))
   :init
   (defun nby/org-agenda-breadcrumb ()
     (concat
@@ -13,7 +14,7 @@
      (mapconcat 'identity
                 (mapcar (lambda (x) (format "%s" x))
                         (org-get-outline-path))
-                " ≫ ")
+                " » ")
      "]"))
   (setq
    org-startup-indented t
@@ -56,7 +57,7 @@
   :ensure
   :after org
   :init
-  (setq org-bullets-bullet-list '("▸" "◆" "●" "○"))
+  (setq org-bullets-bullet-list '("◆" "●" "○" "▸"))
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 (use-package ox-s5
@@ -64,5 +65,12 @@
 
 (use-package mixed-pitch
   :ensure
-  :hook
-  (org-mode . mixed-pitch-mode))
+  :config
+  (add-to-list 'mixed-pitch-fixed-pitch-faces 'org-special-keyword)
+  (add-to-list 'mixed-pitch-fixed-pitch-faces 'org-todo)
+  (add-to-list 'mixed-pitch-fixed-pitch-faces 'org-date)
+  (add-to-list 'mixed-pitch-fixed-pitch-faces 'org-link)
+  (add-to-list 'mixed-pitch-fixed-pitch-faces 'py-variable-name-face)
+  (add-to-list 'mixed-pitch-fixed-pitch-faces 'py-number-face)
+  :hook ((org-mode . variable-pitch-mode)
+         (org-mode . mixed-pitch-mode)))

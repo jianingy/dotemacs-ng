@@ -131,6 +131,7 @@
  '(column-number-mode  t)                  ;; display column number
  '(display-time-mode   t)                  ;; Show time on status bar
  '(blink-cursor-mode   nil)                ;; Stop cursor blinking
+ '(cusor-type          'box)
  '(inhibit-startup-message t))             ;; disable splash screen
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -160,63 +161,52 @@
 (defvar nby/x-font-cjk "Noto Sans CJK SC"
   "Font for CJK characters.")
 
-(defvar nby/doc-font-latin "Work Sans"
+(defvar nby/v-font-latin "Work Sans"
   "Font for english characters.")
 
-(defvar nby/doc-font-symbol "Symbol"
+(defvar nby/v-font-symbol "Symbol"
   "Font for symbols characters.")
 
-(defvar nby/doc-font-mono "mono"
-  "Font for mono characters.")
-
-(defvar nby/doc-font-cjk "Alibaba Sans"
+(defvar nby/v-font-cjk "Alibaba Sans"
   "Font for CJK characters.")
 
 (defvar nby/font-rescales ()
   "Rescale value for chinese to match latin fonts")
 
-;; refer to http://baohaojun.github.io/perfect-emacs-chinese-font.html
-(when nby/font-rescales
-  (dolist (rescale nby/font-rescales)
-    (add-to-list 'face-font-rescale-alist rescale)))
-
 ;; set xft font when we are using window system
 (when window-system
 
-  ;; set default/fixed font
-  ;; (set-face-attribute 'default nil :font nby/x-font-latin)
-  ;; (set-face-attribute 'fixed-pitch nil :font nby/x-font-latin)
-  ;; (let ((fontset (frame-parameter nil 'font)))
-  ;;   (dolist (charset '(kana han cjk-misc bopomofo))
-  ;;     (set-fontset-font fontset charset nby/x-font-cjk))
-  ;;   (set-fontset-font fontset 'symbol nby/x-font-symbol)
-  ;;   (set-fontset-font fontset 'unicode nby/x-font-symbol nil 'append)
-
   (setq use-default-font-for-symbols nil
-        default-frame-alist '((font . "Monospace")))
+        default-frame-alist '((font . "Noto Sans Mono CJK SC")))
 
   ;; set default font
   (let ((fontset (create-fontset-from-fontset-spec standard-fontset-spec)))
     (message "[config] set standard-fontset %s for emacs" fontset)
-    (set-fontset-font fontset 'unicode nby/x-font-symbol nil 'prepend)
-    (set-fontset-font fontset 'latin nby/x-font-latin nil 'prepend)
-    (set-fontset-font fontset 'symbol nby/x-font-symbol nil 'prepend)
+    (set-fontset-font fontset 'unicode nby/x-font-symbol)
+    (set-fontset-font fontset 'latin nby/x-font-latin)
+    (set-fontset-font fontset 'symbol nby/x-font-symbol)
     (dolist (charset '(kana han cjk-misc hangul kanbun bopomofo))
-      (set-fontset-font fontset charset nby/x-font-cjk nil 'prepend))
+      (set-fontset-font fontset charset nby/x-font-cjk))
     (add-to-list 'default-frame-alist (cons 'font fontset))
-    (add-to-list 'initial-frame-alist (cons 'font fontset)))
+    (add-to-list 'initial-frame-alist (cons 'font fontset))
+    (set-face-attribute 'fixed-pitch nil :fontset fontset :font fontset)
+    (set-face-attribute 'fixed-pitch-serif nil :fontset fontset :font fontset))
 
-  ;; set variable font
-  (let ((fontset (create-fontset-from-fontset-spec
-                  "-*-fixed-medium-r-normal-*-16-*-*-*-*-*-fontset-variable" t)))
+  ;; set variable-pitch font
+  (let ((fontset (new-fontset
+                  "-*-*-medium-r-normal-*-16-*-*-*-*-*-fontset-variable" nil)))
     (message "[config] create fontset %s for documentation" fontset)
-    (set-fontset-font fontset 'unicode nby/doc-font-cjk)
-    (set-fontset-font fontset 'latin nby/doc-font-latin nil 'prepend)
-    (set-fontset-font fontset 'symbol nby/x-font-symbol nil 'prepend)
+    (set-fontset-font fontset 'unicode nby/v-font-cjk)
+    (set-fontset-font fontset 'latin nby/v-font-latin)
+    (set-fontset-font fontset 'symbol nby/v-font-symbol)
     (dolist (charset '(kana han cjk-misc hangul kanbun bopomofo))
-      (message "%s %s %s" fontset charset nby/doc-font-cjk)
-      (set-fontset-font fontset charset nby/doc-font-cjk nil 'prepend))
-    (set-face-attribute 'variable-pitch nil :font fontset))
+      (set-fontset-font fontset charset nby/v-font-cjk))
+    (set-face-attribute 'variable-pitch nil :fontset fontset :font fontset))
+
+  ;; refer to http://baohaojun.github.io/perfect-emacs-chinese-font.html
+  (when nby/font-rescales
+    (dolist (rescale nby/font-rescales)
+      (add-to-list 'face-font-rescale-alist rescale)))
 
   (message "[config] fontset configuration ok"))
 
