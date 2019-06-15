@@ -56,9 +56,7 @@
 (use-package org-bullets
   :ensure
   :after org
-  :init
-  (setq org-bullets-bullet-list '("◆" "●" "○" "▸"))
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+  :hook (org-mode . org-bullets-mode))
 
 (use-package ox-s5
   :ensure org-plus-contrib)
