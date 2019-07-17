@@ -315,7 +315,7 @@
 ;; Treemacs
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
+(defvar nby/treemacs-icon-size 16 "Treemacs Icon size.")
 (use-package treemacs
   :ensure
   :config
@@ -324,7 +324,7 @@
                 treemacs-fringe-indicator-mode nil
                 treemacs-follow-mode t
                 treemacs-filewatch-mode t)
-  (treemacs-resize-icons 18)
+  (treemacs-resize-icons nby/treemacs-icon-size)
   :hook
   (emacs-startup . treemacs)
   :bind
@@ -340,5 +340,21 @@
 (use-package treemacs-magit
   :after treemacs magit
   :ensure)
+
+(use-package centaur-tabs
+  :ensure
+  :demand
+  :hook
+  ((dired-mode . centaur-tabs-local-mode)
+   (dashboard-mode . centaur-tabs-local-mode))
+  :config
+  (setq centaur-tabs-style "bar"
+        centaur-tabs-set-bar 'over
+        centaur-tabs-set-close-button "✘"
+        centaur-tabs-height 48
+        entaur-tabs-set-modified-marker t
+        centaur-tabs-set-icons nil)
+
+  (centaur-tabs-mode t))
 
 ;;; ends here

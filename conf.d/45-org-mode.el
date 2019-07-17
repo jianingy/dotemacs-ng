@@ -72,3 +72,8 @@
   (add-to-list 'mixed-pitch-fixed-pitch-faces 'py-number-face)
   :hook ((org-mode . variable-pitch-mode)
          (org-mode . mixed-pitch-mode)))
+
+(use-package writeroom-mode
+  :ensure
+  :hook
+  (org-mode . writeroom-mode))
