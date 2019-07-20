@@ -351,9 +351,7 @@
   (setq centaur-tabs-style "bar"
         centaur-tabs-set-bar 'over
         centaur-tabs-set-close-button "✘"
-        centaur-tabs-height 48
-        entaur-tabs-set-modified-marker t
-        centaur-tabs-set-icons nil)
+        entaur-tabs-set-modified-marker t)
 
   (centaur-tabs-mode t))
 
