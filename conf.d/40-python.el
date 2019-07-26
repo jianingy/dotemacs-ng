@@ -12,7 +12,11 @@
   (pylookup-program (concat user-conf-dir ".python-environments/default/bin/pylookup.py"))
   (pylookup-db-file (conat user-conf-dir "db/pylookup.db")))
 
+(use-package pyvenv
+  :ensure)
+
 (use-package python-mode
+  :after (projectile pyvenv)
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python" . python-mode)
   :ensure
@@ -24,23 +28,20 @@
    lsp-pyls-plugins-pycodestyle-enabled t
    lsp-pyls-plugins-pyflakes-enabled t
    lsp-pyls-plugins-pylint-enabled nil)
-  :hook (python-mode . lsp)
+  (defun pyvenv-autoload ()
+    "Automatically activates pyvenv version if .venv file exists."
+    (let* ((pdir (projectile-project-root)) (pfile (concat pdir ".venv")))
+      (message "searching %s %s" pdir pfile)
+      (if (file-exists-p pfile)
+          (pyvenv-workon (with-temp-buffer
+                           (insert-file-contents pfile)
+                           (message "activating virtualenv %s" (string-trim (buffer-string)))
+                           (nth 0 (split-string (buffer-string))))))))
+  :hook ((python-mode . lsp))
   :bind (:map python-mode-map
               ("<tab>" . nby/dwim-tab))
   :custom (tab-width nby/python-indentation-size)
   (py-indent-offset nby/python-indentation-size))
-
-(use-package pyvenv
-  :after (projectile pythn-mode)
-  :ensure
-  :hook (python-mode . pyvenv-autoload)
-  :init
-  (defun pyvenv-autoload ()
-    (let* ((pdir (projectile-project-root)) (pfile (concat pdir ".venv")))
-      (if (file-exists-p pfile)
-          (pyvenv-workon (with-temp-buffer
-                           (insert-file-contents pfile)
-                           (nth 0 (split-string (buffer-string)))))))))
 
 ;; Emacs IPython Notebook
 (use-package ein-loaddefs :after ein)
