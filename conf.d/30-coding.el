@@ -17,7 +17,7 @@
 ;; syntax check
 (use-package flycheck
   :ensure
-  :pin melpa-stable
+;  :pin melpa-stable
   :commands (flycheck-add-mode)
   :bind (("C-c n" . next-error))
   :config (global-flycheck-mode))

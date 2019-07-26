@@ -7,8 +7,31 @@
 ;; Color Themes & Layout tuning
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package solaire-mode
+  :ensure
+  :pin melpa-stable
+  :hook
+  ((change-major-mode after-revert ediff-prepare-buffer) . turn-on-solaire-mode)
+  (minibuffer-setup . solaire-mode-in-minibuffer)
+  :config
+  (remove-hook 'solaire-mode-hook 'solaire-mode-fix-latex-preview-background t)
+  (solaire-global-mode +1)
+  (solaire-mode-swap-bg))
+
+(use-package doom-themes
+  :ensure
+  :if window-system
+  :after (all-the-icons company nlinum treemacs org)
+  :config
+  (message "Loading theme dracula")
+  (load-theme 'doom-dracula t)
+  (doom-themes-org-config)
+  (doom-themes-treemacs-config))
+
 (use-package dracula-theme
   :ensure
+  :disabled
   :if window-system
   :after (company nlinum)
   :custom-face
@@ -28,55 +51,6 @@
   :config
   (message "Loading theme dracula")
   (load-theme 'dracula t))
-
-(use-package monokai-theme
-  :ensure
-  :disabled
-  :if window-system
-  :after (company nlinum)
-  :custom-face
-  (company-tooltip ((t (:inherit default :foreground "white smoke" :background "#333"))))
-  (company-scrollbar-bg ((t (:background "#333"))))
-  (company-scrollbar-fg ((t (:background "deep sky blue"))))
-  (company-tooltip-annotation ((t (:foreground "white smoke"))))
-  (company-tooltip-annotation-selection ((t (:foreground "black"))))
-  (company-tooltip-selection ((t (:foreground "black" :background "deep sky blue"))))
-  (company-tooltip-common ((t (:foreground "orange"))))
-  (company-tooltip-common-selection ((t (:foreground "black"))))
-  (mode-line ((t (:background "#333" :foreground "#75715E" :box nil :weight normal))))
-  (mode-line-highlight ((t (:background "deep sky blue" :foreground "#333" :box nil :weight normal))))
-  (mode-line-inactive ((t (:background "#333" :foreground "#75715E" :box nil :weight normal))))
-  (vertical-border ((t (:foreground "#333333"))))
-  (nlinum-current-line ((t (:foreground "orange"))))
-  :init
-  (add-hook 'buffer-list-update-hook 'nby/display-header-as-margin)
-  (add-hook 'emacs-startup-hook  'nby/display-header-as-margin)
-  :config
-  (message "Loading theme monokai")
-  (load-theme 'monokai t))
-
-
-(use-package sublime-themes
-  :disabled
-  :ensure
-  :if window-system
-  :after (company nlinum)
-  :custom-face
-  (company-tooltip ((t (:inherit default :foreground "white smoke" :background "#333"))))
-  (company-scrollbar-bg ((t (:background "#333"))))
-  (company-scrollbar-fg ((t (:background "deep sky blue"))))
-  (company-tooltip-annotation ((t (:foreground "white smoke"))))
-  (company-tooltip-annotation-selection ((t (:foreground "black"))))
-  (company-tooltip-selection ((t (:foreground "black" :background "deep sky blue"))))
-  (company-tooltip-common ((t (:foreground "orange"))))
-  (company-tooltip-common-selection ((t (:foreground "black"))))
-  (vertical-border ((t (:foreground "#333333"))))
-  (nlinum-current-line ((t (:foreground "orange"))))
-  :init
-  (add-hook 'buffer-list-update-hook 'nby/display-header-as-margin)
-  (add-hook 'emacs-startup-hook  'nby/display-header-as-margin)
-  :config
-  (load-theme 'spolsky t))
 
 (use-package color-theme-modern
   :ensure)
@@ -232,6 +206,7 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package icons-in-terminal
+  :disabled
   :load-path "site-lisp/icons-in-terminal")
 
 (use-package all-the-icons
@@ -261,6 +236,15 @@
   (setq-default doom-modeline-height 20)
   :config
   (doom-modeline-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; hide-mode-line
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package hide-mode-line
+  :ensure)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -315,7 +299,6 @@
 ;; Treemacs
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defvar nby/treemacs-icon-size 16 "Treemacs Icon size.")
 (use-package treemacs
   :ensure
   :config
@@ -324,14 +307,16 @@
                 treemacs-fringe-indicator-mode nil
                 treemacs-follow-mode t
                 treemacs-filewatch-mode t)
-  (treemacs-resize-icons nby/treemacs-icon-size)
+  :custom-face
+;  (treemacs-root-face ((t (:height 0.8))))
+;  (treemacs-file-face ((t (:height 0.8))))
+;  (treemacs-directory-face ((t (:height 0.8))))
+;  (treemacs-tag-face ((t (:height 0.8))))
   :hook
+  (treemacs-mode . hide-mode-line-mode)
   (emacs-startup . treemacs)
   :bind
-  ("M-ESC" . treemacs)
-  :custom-face
-  (treemacs-root-face ((t (:height 1.1)))))
-
+  ("M-ESC" . treemacs))
 
 (use-package treemacs-projectile
   :after treemacs projectile
@@ -347,12 +332,16 @@
   :hook
   ((dired-mode . centaur-tabs-local-mode)
    (dashboard-mode . centaur-tabs-local-mode))
+  :custom-face
+  (centaur-tabs-default ((t (:height 0.8))))
+  (centaur-tabs-selected ((t (:height 0.8))))
+  (centaur-tabs-unselected ((t (:height 0.8))))
   :config
   (setq centaur-tabs-style "bar"
         centaur-tabs-set-bar 'over
         centaur-tabs-set-close-button "✘"
+        centaur-tabs-gray-out-icons 'buffer
         entaur-tabs-set-modified-marker t)
-
   (centaur-tabs-mode t))
 
 ;;; ends here
