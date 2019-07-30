@@ -203,4 +203,16 @@
          ("M-]" . dumb-jump-back))
   :config (setq dumb-jump-selector 'helm))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; popup eshell
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package pop-eshell-mode
+  :load-path "site-lisp/pop-eshell-mode"
+  :bind ("C-z" . eshell-pop-toggle)
+  :config
+  (pop-eshell-mode 1))
+
 ;;; ends here

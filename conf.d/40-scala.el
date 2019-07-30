@@ -3,6 +3,7 @@
   :mode "\\.s\\(cala\\|bt\\)$"
   :interpreter ("scala" . scala-mode)
   :hook ((scala-mode . scala-mode-startup)
+         (scala-mode . electric-pair-mode)
          (scala-mode . lsp))
   :init
   (defconst scala-mode-symbols-alist
