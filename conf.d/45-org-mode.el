@@ -43,7 +43,7 @@
          ("C-c a" . org-agenda)
          ("C-c c" . org-capture)))
 (use-package org-clock
-  :after org
+  :after (org jupyter)
   :init
   (add-hook 'org-babel-after-execute-hook 'org-redisplay-inline-images)
   (setq org-confirm-babel-evaluate nil
@@ -51,6 +51,7 @@
         org-clock-out-switch-to-state "SUSPENDED")
   (org-babel-do-load-languages 'org-babel-load-languages
                                '((emacs-lisp . t)
+                                 (jupyter . t)
                                  (plantuml . t))))
 
 (use-package org-bullets

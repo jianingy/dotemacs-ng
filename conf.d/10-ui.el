@@ -16,7 +16,6 @@
   (minibuffer-setup . solaire-mode-in-minibuffer)
   :config
   (remove-hook 'solaire-mode-hook 'solaire-mode-fix-latex-preview-background t)
-  (solaire-global-mode +1)
   (solaire-mode-swap-bg))
 
 (use-package doom-themes
@@ -27,7 +26,8 @@
   (message "Loading theme dracula")
   (load-theme 'doom-dracula t)
   (doom-themes-org-config)
-  (doom-themes-treemacs-config))
+  (doom-themes-treemacs-config)
+  (solaire-global-mode +1))
 
 (use-package dracula-theme
   :ensure

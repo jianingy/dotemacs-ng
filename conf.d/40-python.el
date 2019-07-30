@@ -43,21 +43,6 @@
   :custom (tab-width nby/python-indentation-size)
   (py-indent-offset nby/python-indentation-size))
 
-;; Emacs IPython Notebook
-(use-package ein-loaddefs :after ein)
-(use-package ein-notebook :after ein)
-(use-package ein-subpackages :after ein)
-
-(use-package ein
-  :ensure
-  :bind (:map ein:notebook-mode-map
-              ("C-c C-x C-c" . comment-region)
-              ("C-c C-x C-d" . uncomment-region))
-  :init
-  (setq-default ein:use-auto-complete t)
-  :config
-  (unbind-key "C-c C-x" ein:notebook-mode-map))
-
 (use-package pyimpsort
   :ensure
   :after python-mode)
