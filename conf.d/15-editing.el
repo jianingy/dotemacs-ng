@@ -10,7 +10,7 @@
 (setq
  backup-by-copying                 t
  tab-width                         8               ;; default tab width
- fill-column                      79               ;; default column width
+ fill-column                      80               ;; default column width
  mouse-yank-at-point               t               ;; dont insert at mouse point
  kill-ring-max                   512               ;; size of killing ring
  delete-old-versions               t

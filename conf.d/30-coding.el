@@ -25,7 +25,7 @@
 (use-package flycheck-pos-tip
   :after flycheck
   :ensure
-  :init (setq flycheck-pos-tip-max-width 80
+  :init (setq flycheck-pos-tip-max-width 100
               flycheck-pos-tip-timeout 30)
   :config (eval-after-load 'flycheck
             '(setq flycheck-display-errors-function
@@ -34,7 +34,7 @@
 (use-package column-enforce-mode
   :ensure
   :diminish column-enforce-mode
-  :init (setq column-enforce-column 79
+  :init (setq column-enforce-column 100
               column-enforce-comments nil)
   :config (global-column-enforce-mode t))
 
@@ -212,6 +212,7 @@
 (use-package pop-eshell-mode
   :load-path "site-lisp/pop-eshell-mode"
   :bind ("C-z" . eshell-pop-toggle)
+  :hook ((eshell-mode . (lambda () (setq pcomplete-cycle-completions nil))))
   :config
   (pop-eshell-mode 1))
 

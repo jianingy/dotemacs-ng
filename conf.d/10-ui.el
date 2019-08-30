@@ -55,22 +55,6 @@
 (use-package color-theme-modern
   :ensure)
 
-(use-package tangotango-theme
-  :ensure
-  :after color-theme-modern
-  :if (not window-system)
-  :custom-face
-  (company-tooltip ((t (:inherit default :foreground "white smoke" :background "#333"))))
-  (company-scrollbar-bg ((t (:background "#333"))))
-  (company-scrollbar-fg ((t (:background "deep sky blue"))))
-  (company-tooltip-annotation ((t (:foreground "white smoke"))))
-  (company-tooltip-annotation-selection ((t (:foreground "black"))))
-  (company-tooltip-selection ((t (:foreground "black" :background "deep sky blue"))))
-  (company-tooltip-common ((t (:foreground "orange"))))
-  (company-tooltip-common-selection ((t (:foreground "black"))))
-  (nlinum-current-line ((t (:foreground "orange"))))
-  :config (load-theme 'tangotango t))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Basic Behaviors
