@@ -15,8 +15,7 @@
   ((change-major-mode after-revert ediff-prepare-buffer) . turn-on-solaire-mode)
   (minibuffer-setup . solaire-mode-in-minibuffer)
   :config
-  (remove-hook 'solaire-mode-hook 'solaire-mode-fix-latex-preview-background t)
-  (solaire-mode-swap-bg))
+  (remove-hook 'solaire-mode-hook 'solaire-mode-fix-latex-preview-background t))
 
 (use-package doom-themes
   :ensure
@@ -27,6 +26,7 @@
   (load-theme 'doom-dracula t)
   (doom-themes-org-config)
   (doom-themes-treemacs-config)
+  (solaire-mode-swap-bg)
   (solaire-global-mode +1))
 
 (use-package dracula-theme
@@ -309,6 +309,12 @@
 (use-package treemacs-magit
   :after treemacs magit
   :ensure)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; centaur-tabs
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package centaur-tabs
   :ensure
