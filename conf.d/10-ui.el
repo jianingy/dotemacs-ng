@@ -22,6 +22,7 @@
   :if window-system
   :after (all-the-icons company nlinum treemacs org)
   :config
+  (setq doom-themes-treemacs-enable-variable-pitch nil)
   (message "Loading theme dracula")
   (load-theme 'doom-dracula t)
   (doom-themes-org-config)
@@ -196,7 +197,9 @@
 (use-package all-the-icons
   :ensure
   :config
-  (setq inhibit-compacting-font-caches t))
+  (setq
+   all-the-icons-scale-factor 1.0
+   inhibit-compacting-font-caches t))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -292,10 +295,13 @@
                 treemacs-follow-mode t
                 treemacs-filewatch-mode t)
   :custom-face
-;  (treemacs-root-face ((t (:height 0.8))))
-;  (treemacs-file-face ((t (:height 0.8))))
-;  (treemacs-directory-face ((t (:height 0.8))))
-;  (treemacs-tag-face ((t (:height 0.8))))
+  (treemacs-root-face ((t (:height 0.8))))
+  (treemacs-file-face ((t (:height 0.8))))
+  (treemacs-directory-face ((t (:height 0.8))))
+  (treemacs-tag-face ((t (:height 0.8))))
+  (treemacs-git-modified-face ((t (:height 0.8))))
+  (treemacs-git-ignored-face ((t (:height 0.8))))
+  (treemacs-git-untrack-face ((t (:height 0.8))))
   :hook
   (treemacs-mode . hide-mode-line-mode)
   (emacs-startup . treemacs)
@@ -325,7 +331,9 @@
   :custom-face
   (centaur-tabs-default ((t (:height 0.8))))
   (centaur-tabs-selected ((t (:height 0.8))))
+  (centaur-tabs-selected-modified ((t (:height 0.8))))
   (centaur-tabs-unselected ((t (:height 0.8))))
+  (centaur-tabs-unselected-modified ((t (:height 0.8))))
   :config
   (setq centaur-tabs-style "bar"
         centaur-tabs-set-bar 'over

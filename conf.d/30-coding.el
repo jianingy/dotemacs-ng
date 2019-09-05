@@ -170,12 +170,6 @@
   :mode (("\\.yml\\'" . yaml-mode)
          ("\\.yaml\\'" . yaml-mode)))
 
-
-(use-package haskell-mode
-  :ensure
-  :mode ("\\.hs\\'"))
-
-
 (use-package nginx-mode
   :ensure)
 

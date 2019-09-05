@@ -4,6 +4,7 @@
 (use-package haskell-mode
   :ensure t
   :requires lsp-haskell
+  :hook ((haskell-mode . lsp))
+  :mode ("\\.hs\\'")
   :config
-  (setq lsp-prefer-flymake nil)
-  :hook ((haskell-mode . lsp)))
+  (setq lsp-prefer-flymake nil))
