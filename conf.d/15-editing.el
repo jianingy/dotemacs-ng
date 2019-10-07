@@ -169,14 +169,15 @@
   (setq-default
    yas-verbosity 1                      ; No need to be so verbose
    yas-wrap-around-region t)
-  (with-eval-after-load 'yasnippet
-    (setq-default yas-snippet-dirs '(yasnippet-snippets-dir)))
   (yas-reload-all)
   (yas-global-mode))
 
 (use-package yasnippet-snippets         ; Collection of snippets
   :ensure t
-  :after yasnippet)
+  :after yasnippet
+  :config
+  (with-eval-after-load 'yasnippet
+    (add-to-list 'yas-snippet-dirs yasnippet-snippets-dir)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
