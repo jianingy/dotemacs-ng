@@ -18,6 +18,7 @@
      "]"))
   (setq
    org-startup-indented t
+   org-hide-leading-stars t
    org-todo-keywords
    '((sequence "TODO(t)" "WORKING" "SUSPENDED" "|"
                "DONE(d)" "ABANDONED(a)")
@@ -77,4 +78,6 @@
 (use-package writeroom-mode
   :ensure
   :hook
-  (org-mode . writeroom-mode))
+  (org-mode . writeroom-mode)
+  :config
+  (setq-default writeroom-width 110))

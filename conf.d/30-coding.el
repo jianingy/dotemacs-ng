@@ -219,4 +219,8 @@
 (use-package jupyter
   :ensure)
 
+
+(use-package fira-code-mode
+  :load-path "site-lisp/fira-code-mode")
+
 ;;; ends here

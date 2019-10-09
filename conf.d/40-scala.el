@@ -9,10 +9,11 @@
   (defconst scala-mode-symbols-alist
     '(("<=" . ?≤)
       (">=" . ?≥)
+      ("!=" . ?≠)
       ("->" . ?→)
       ("<-" . ?←)
-      ("=>" . ?⇒)
-      ("<=>" . ?⇔)))
+      ("=>" . ?⟹)
+      ("<=>" . ?⟺)))
   (defun scala-mode-startup ()
     (setq prettify-symbols-alist scala-mode-symbols-alist)
     (prettify-symbols-mode))
