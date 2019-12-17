@@ -27,14 +27,15 @@
 
 (use-package web-mode
   :mode (("\\.html\\'" . web-mode)
+         ("\\.vue\\'" . web-mode)
          ("\\.wxml\\'" . web-mode)
          ("\\.wxss\\'" . css-mode)
-         ("\\.wpy\\'" . web-mode)
-         ("\\.vue\\'" . web-mode))
+         ("\\.wpy\\'" . web-mode))
+  :hook (web-mode . highlight-indent-guides-mode)
   :init
   (setq web-mode-markup-indent-offset 2
-        web-mode-style-padding 1
-        web-mode-script-padding 1
+        web-mode-style-padding 0
+        web-mode-script-padding 0
         web-mode-block-padding 0
         web-mode-css-indent-offset 2
         web-mode-enable-css-colorization t
@@ -47,8 +48,9 @@
   :mode ("\\.js\\'" . rjsx-mode)
   :config
   (defun nby/setup-rjsx-flycheck-eslint ()
-    (setq flycheck-javascript-eslint-executable
-          (concat (projectile-project-root) "/node_modules/.bin/eslint"))
+    ;; install eslint with nvm's npm
+    ;; (setq flycheck-javascript-eslint-executable
+    ;;       (concat (projectile-project-root) "/node_modules/.bin/eslint"))
     (with-eval-after-load "lsp-ui-flycheck"
       (flycheck-add-next-checker 'lsp-ui '(error . javascript-eslint))))
   :hook ((rjsx-mode . lsp)

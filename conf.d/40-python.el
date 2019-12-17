@@ -28,6 +28,8 @@
    lsp-pyls-plugins-pycodestyle-enabled t
    lsp-pyls-plugins-pyflakes-enabled t
    lsp-pyls-plugins-pylint-enabled nil)
+  (defun py-workaround ()
+    (flycheck-select-checker 'python-flake8))
   (defun pyvenv-autoload ()
     "Automatically activates pyvenv version if .venv file exists."
     (let* ((pdir (projectile-project-root)) (pfile (concat pdir ".venv")))
@@ -37,7 +39,8 @@
                            (insert-file-contents pfile)
                            (message "activating virtualenv %s" (string-trim (buffer-string)))
                            (nth 0 (split-string (buffer-string))))))))
-  :hook ((python-mode . lsp))
+  :hook ((python-mode . lsp)
+         (python-mode . py-workaround))
   :bind (:map python-mode-map
               ("<tab>" . nby/dwim-tab))
   :custom (tab-width nby/python-indentation-size)

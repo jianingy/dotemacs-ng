@@ -223,4 +223,15 @@
 (use-package fira-code-mode
   :load-path "site-lisp/fira-code-mode")
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; highlight indentation
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package highlight-indent-guides-mode
+  :init
+  (setq highlight-indent-guides-method 'character)
+  :bind (("C-c i" . highlight-indent-guides-mode)))
+
+
 ;;; ends here
