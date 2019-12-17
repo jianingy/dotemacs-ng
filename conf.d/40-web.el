@@ -54,6 +54,7 @@
     (with-eval-after-load "lsp-ui-flycheck"
       (flycheck-add-next-checker 'lsp-ui '(error . javascript-eslint))))
   :hook ((rjsx-mode . lsp)
+         (rjsx-mode . highlight-indent-guides-mode)
          (rjsx-mode . nby/setup-rjsx-flycheck-eslint))
   :init (setq js-indent-level 2
               js2r-prefered-quote-type 2

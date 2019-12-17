@@ -40,6 +40,7 @@
                            (message "activating virtualenv %s" (string-trim (buffer-string)))
                            (nth 0 (split-string (buffer-string))))))))
   :hook ((python-mode . lsp)
+         (python-mode . highlight-indent-guides-mode)
          (python-mode . py-workaround))
   :bind (:map python-mode-map
               ("<tab>" . nby/dwim-tab))

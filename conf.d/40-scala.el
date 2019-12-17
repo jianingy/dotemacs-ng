@@ -3,6 +3,7 @@
   :mode "\\.s\\(cala\\|bt\\)$"
   :interpreter ("scala" . scala-mode)
   :hook ((scala-mode . scala-mode-startup)
+         (scala-mode . highlight-indent-guides-mode)
          (scala-mode . electric-pair-mode)
          (scala-mode . lsp))
   :init
