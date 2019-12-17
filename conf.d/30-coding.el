@@ -228,7 +228,7 @@
 ;; highlight indentation
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(use-package highlight-indent-guides-mode
+(use-package highlight-indent-guides
   :ensure
   :init
   (setq highlight-indent-guides-method 'character)
