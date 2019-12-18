@@ -31,6 +31,7 @@
          ("\\.wxml\\'" . web-mode)
          ("\\.wxss\\'" . css-mode)
          ("\\.wpy\\'" . web-mode))
+  :after (lsp-mode highlight-indent-guides)
   :hook (web-mode . highlight-indent-guides-mode)
   :init
   (setq web-mode-markup-indent-offset 2
@@ -44,7 +45,7 @@
 
 (use-package rjsx-mode
   :ensure
-  :after (lsp-mode)
+  :after (lsp-mode highlight-indent-guides)
   :mode ("\\.js\\'" . rjsx-mode)
   :config
   (defun nby/setup-rjsx-flycheck-eslint ()

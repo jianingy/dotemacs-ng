@@ -1,5 +1,6 @@
 (use-package scala-mode
   :ensure
+  :after (lsp-mode highlight-indent-guides)
   :mode "\\.s\\(cala\\|bt\\)$"
   :interpreter ("scala" . scala-mode)
   :hook ((scala-mode . scala-mode-startup)

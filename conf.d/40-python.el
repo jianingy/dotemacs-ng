@@ -16,7 +16,7 @@
   :ensure)
 
 (use-package python-mode
-  :after (projectile pyvenv)
+  :after (projectile pyvenv lsp-mode highlight-indent-guides)
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python" . python-mode)
   :ensure

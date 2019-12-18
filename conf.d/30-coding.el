@@ -230,6 +230,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package highlight-indent-guides
   :ensure
+  :demand
   :init
   (setq highlight-indent-guides-method 'character)
   :bind (("C-c i" . highlight-indent-guides-mode)))
