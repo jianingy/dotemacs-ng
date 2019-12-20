@@ -147,6 +147,12 @@
          ([remap xref-find-references] . lsp-ui-peek-find-references))
   :init (push 'company-lsp company-backends))
 
+(use-package lsp-treemacs
+  :after (lsp treemacs)
+  :ensure
+  :config
+  (lsp-metals-treeview-enable t)
+  (setq lsp-metals-treeview-show-when-views-received t))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;

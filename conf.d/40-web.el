@@ -76,7 +76,11 @@
 
 (use-package vue-mode
   :disabled
+  :after (lsp-mode highlight-indent-guides)
   :mode ("\\.vue\\'" . vue-mode)
+  :bind (("C-c C-r" . vue-mode-reparse))
+  :hook ((vue-mode . lsp)
+         (vue-mode . highlight-indent-guides-mode))
   :ensure
   :init (setq js-indent-level 2
               js2-strict-missing-semi-warning nil
@@ -85,6 +89,7 @@
   (setq mmm-submode-decoration-level 0))
 
 (use-package lsp-vue
+  :disabled
   :after (lsp-mode)
   :hook ((vue-mode . lsp-vue-mmm-enable))
   :ensure)

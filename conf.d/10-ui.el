@@ -80,7 +80,7 @@
  '(current-language-environment "UTF-8")
  '(left-fringe-width 11)                   ;; left fringe width
  '(right-fringe-width 11)                  ;; right fringe width
- '(line-spacing 5)                         ;; more line spacing
+ '(line-spacing 3)                         ;; more line spacing
  '(display-time-day-and-date t)            ;; Show date
  '(display-time-24hr-format  t)            ;; Show time in 24-hour format
  '(show-paren-mode     t)                  ;; Togggle visualizatgion of matching parens

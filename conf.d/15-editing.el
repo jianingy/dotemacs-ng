@@ -200,4 +200,7 @@
   :ensure
   :commands (buf-move-up buf-move-down buf-move-left buf-moveright))
 
+(use-package visual-regexp
+  :ensure)
+
 ;;; ends here
