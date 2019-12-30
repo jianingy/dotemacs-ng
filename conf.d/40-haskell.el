@@ -5,10 +5,12 @@
   :ensure t
   :after (highlight-indent-guides)
   :requires lsp-haskell
+  :bind ("C-c C-c" . haskell-compile)
   :hook ((haskell-mode . lsp)
          (haskell-mode . haskell-mode-startup))
   :mode ("\\.hs\\'")
   :init
+  (setq haskell-compile-cabal-build-command "stack run")
   (defconst haskell-mode-symbols-alist
     '(("<=" . ?≤)
       (">=" . ?≥)
@@ -17,9 +19,7 @@
       ("->" . ?→)
       ("<-" . ?←)
       ("=>" . ?⇒)
-      ("()" . ?∅)
-      ("==" . ?≡)
-      ("<=>" . ?⇔)))
+      ("==" . ?≡)))
   (defun haskell-mode-startup ()
     (setq prettify-symbols-alist haskell-mode-symbols-alist)
     (highlight-indent-guides-mode)

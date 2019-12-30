@@ -328,12 +328,12 @@
   :hook
   ((dired-mode . centaur-tabs-local-mode)
    (dashboard-mode . centaur-tabs-local-mode))
-  :custom-face
-  (centaur-tabs-default ((t (:height 0.8))))
-  (centaur-tabs-selected ((t (:height 0.8))))
-  (centaur-tabs-selected-modified ((t (:height 0.8))))
-  (centaur-tabs-unselected ((t (:height 0.8))))
-  (centaur-tabs-unselected-modified ((t (:height 0.8))))
+  ;; :custom-face
+  ;; (centaur-tabs-default ((t (:height 0.8))))
+  ;; (centaur-tabs-selected ((t (:height 0.8))))
+  ;; (centaur-tabs-selected-modified ((t (:height 0.8))))
+  ;; (centaur-tabs-unselected ((t (:height 0.8))))
+  ;; (centaur-tabs-unselected-modified ((t (:height 0.8))))
   :config
   (setq centaur-tabs-style "bar"
         centaur-tabs-set-bar 'over

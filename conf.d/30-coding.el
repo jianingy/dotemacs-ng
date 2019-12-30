@@ -128,7 +128,7 @@
   :ensure
   :after yasnippet
   :init
-  (setq lsp-auto-guess-root t
+  (setq lsp-auto-guess-root nil
         lsp-prefer-flymake nil)
   :config
   (require 'lsp-clients))
@@ -136,8 +136,15 @@
 (use-package lsp-ui
   :ensure
   :after lsp-mode
-  :config
-  (setq lsp-ui-sideline-ignore-duplicate t))
+  :custom
+  (lsp-ui-doc-enable t)
+  (lsp-ui-doc-header t)
+  (lsp-ui-doc-include-signature t)
+  (lsp-ui-doc-position 'top)
+  (lsp-ui-doc-border (face-foreground 'default))
+  (lsp-ui-sideline-enable nil)
+  (lsp-ui-sideline-ignore-duplicate t)
+  (lsp-ui-sideline-show-code-actions nil))
 
 (use-package company-lsp
   :ensure
@@ -145,6 +152,7 @@
   :bind (:map lsp-ui-mode-map
          ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
          ([remap xref-find-references] . lsp-ui-peek-find-references))
+  :custom (company-lsp-cache-candidates 'auto)
   :init (push 'company-lsp company-backends))
 
 (use-package lsp-treemacs
@@ -196,12 +204,13 @@
   :ensure
   :mode (("\\.json\\'" . json-mode)))
 
-
 (use-package dumb-jump
   :ensure
-  :bind (("M-[" . dumb-jump-go)
-         ("M-]" . dumb-jump-back))
-  :config (setq dumb-jump-selector 'helm))
+  :bind
+  (:map prog-mode-map
+        (("M-[" . dumb-jump-go)
+         ("M-]" . dumb-jump-go-prompt)))
+  :custom (dumb-jump-selector 'helm))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;

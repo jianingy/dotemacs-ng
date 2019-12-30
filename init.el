@@ -2,6 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
+;; turn up gc to speed up startup time
+(setq gc-cons-threshold 100000000)
+
 ;; try enable debug mode
 (when (getenv "EMACS_DEBUG")
   (setq debug-on-error t))
@@ -15,7 +18,7 @@
 
 (require 'package)
 (setq package-enable-at-startup nil)
-(package-initialize)
+; (package-initialize)
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
