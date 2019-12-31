@@ -67,9 +67,6 @@
   :ensure
   :if window-system)
 
-(use-package ivy
-  :ensure)
-
 (use-package projectile
   :ensure
   :diminish projectile-mode
@@ -86,6 +83,12 @@
   :config
   (add-to-list 'projectile-globally-ignored-directories "build")
   :config (projectile-mode))
+
+(use-package counsel-projectile
+  :ensure
+  :after projectile
+  :init
+  (counsel-projectile-mode))
 
 (use-package helm-projectile
   :ensure

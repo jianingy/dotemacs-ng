@@ -342,4 +342,77 @@
         entaur-tabs-set-modified-marker t)
   (centaur-tabs-mode t))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; ivy
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package ivy
+  :ensure
+  :diminish
+  :bind (("C-c C-r" . ivy-resume))
+  :init
+  (setq enable-recursive-minibuffers nil
+        ivy-wrap t
+        ivy-use-virtual-buffers t
+        ivy-count-format "(%d/%d) ")
+  (ivy-mode 1))
+
+(use-package ivy-rich
+  :ensure
+  :after ivy
+  :config
+  (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
+  :init
+  (setq ivy-virtual-abbreviate 'full
+        ivy-rich-switch-buffer-align-virtual-buffer t
+        ivy-rich-path-style 'abbrev)
+  (ivy-rich-mode 1))
+
+(use-package ivy-posframe
+  :ensure
+  :after ivy
+  :init
+  (setq ivy-posframe-display-functions-alist
+        '((swiper          . ivy-posframe-display-at-frame-window-bottom-left)
+          (complete-symbol . ivy-posframe-display-at-point)
+          (counsel-M-x     . ivy-posframe-display-at-frame-window-bottom-left)
+          (t               . ivy-posframe-display)))
+  (setq ivy-posframe-parameters
+        '((internal-border-width . 75)))
+  (ivy-posframe-mode 1))
+
+;; (use-package all-the-icons-ivy
+;;   :ensure
+;;   :after ivy
+;;   :init
+;;   (all-the-icons-ivy-setup))
+
+(use-package counsel
+  :ensure
+  :after ivy
+  :custom
+  (counsel-find-file-at-point t)
+  (counsel-yank-pop-separator "\n────────\n")
+  :bind
+  (("M-x" . counsel-M-x)
+   ("M-y" . counsel-yank-pop)
+   ("C-x C-f" . counsel-find-file)
+   ("C-x C-r" . counsel-buffer-or-recentf)
+   :map counsel-mode-map
+   ([remap swiper] . counsel-grep-or-swiper)
+   ([remap swiper-backward] . counsel-grep-or-swiper-backward)
+   ([remap dired] . counsel-dired)
+   ([remap set-variable] . counsel-set-variable)
+   ([remap insert-char] . counsel-unicode-char)
+   :map ivy-minibuffer-map
+   ("M-y" . ivy-next-line))
+  :config
+  (counsel-mode))
+
+(use-package swiper
+  :ensure
+  :after ivy
+  :bind (("C-s" . swiper)))
+
 ;;; ends here

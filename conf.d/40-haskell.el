@@ -6,7 +6,8 @@
   :after (highlight-indent-guides)
   :requires lsp-haskell
   :bind ("C-c C-c" . haskell-compile)
-  :hook ((haskell-mode . lsp)
+  :hook ((haskell-interactive-mode . centaur-tabs-local-mode)
+         (haskell-mode . lsp)
          (haskell-mode . haskell-mode-startup))
   :mode ("\\.hs\\'")
   :init

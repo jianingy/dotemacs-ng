@@ -4,6 +4,7 @@
 
 (use-package helm
   :ensure
+  :disabled
   :diminish helm-mode
   :init  (setq helm-split-window-in-side-p       t ; open helm buffer inside current
                                                    ; window, not occupy whole other window
@@ -30,6 +31,7 @@
 
 (use-package helm-bm
   :ensure
+  :disabled
   :after helm
   :bind (("C-c b" . helm-bm)))
 
