@@ -374,9 +374,9 @@
   :after ivy
   :init
   (setq ivy-posframe-display-functions-alist
-        '((swiper          . ivy-posframe-display-at-frame-window-bottom-left)
+        '((swiper          . ivy-posframe-display-at-window-bottom-left)
           (complete-symbol . ivy-posframe-display-at-point)
-          (counsel-M-x     . ivy-posframe-display-at-frame-window-bottom-left)
+          (counsel-M-x     . ivy-posframe-display-at-window-bottom-left)
           (t               . ivy-posframe-display)))
   (setq ivy-posframe-parameters
         '((internal-border-width . 75)))
