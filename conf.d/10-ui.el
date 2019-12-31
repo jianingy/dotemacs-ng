@@ -376,7 +376,7 @@
   (setq ivy-posframe-display-functions-alist
         '((swiper          . ivy-posframe-display-at-window-bottom-left)
           (complete-symbol . ivy-posframe-display-at-point)
-          (counsel-M-x     . ivy-posframe-display-at-window-bottom-left)
+          (counsel-M-x     . ivy-posframe-display-at-frame-top-center)
           (t               . ivy-posframe-display)))
   (setq ivy-posframe-parameters
         '((internal-border-width . 75)))
@@ -413,6 +413,7 @@
 (use-package swiper
   :ensure
   :after ivy
-  :bind (("C-s" . swiper)))
+  :bind (("C-s" . swiper-isearch)
+         ("C-r" . swiper-isearch-backward)))
 
 ;;; ends here
