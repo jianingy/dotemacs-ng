@@ -371,6 +371,7 @@
 
 (use-package ivy-posframe
   :ensure
+  :disabled
   :after ivy
   :init
   (setq ivy-posframe-display-functions-alist
@@ -405,6 +406,8 @@
    ([remap dired] . counsel-dired)
    ([remap set-variable] . counsel-set-variable)
    ([remap insert-char] . counsel-unicode-char)
+   :map counsel-find-file-map
+   ("C-l" . counsel-up-directory)
    :map ivy-minibuffer-map
    ("M-y" . ivy-next-line))
   :config
