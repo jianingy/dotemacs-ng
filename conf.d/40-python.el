@@ -16,12 +16,12 @@
   :ensure)
 
 (use-package python-mode
-  :after (projectile pyvenv lsp-mode highlight-indent-guides)
+  :after (projectile pyvenv highlight-indent-guides)
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python" . python-mode)
   :ensure
   :init
-  (setq-default
+  (setq
    flycheck-flake8rc (expand-file-name "~/.config/flake8")
    lsp-clients-python-command '("pyls" "-v" "--log-file" "/tmp/pyls.log")
    lsp-pyls-configuration-sources ["flake8"]
@@ -39,9 +39,9 @@
                            (insert-file-contents pfile)
                            (message "activating virtualenv %s" (string-trim (buffer-string)))
                            (nth 0 (split-string (buffer-string))))))))
-  :hook ((python-mode . lsp)
-         (python-mode . highlight-indent-guides-mode)
-         (python-mode . py-workaround))
+  :hook ((python-mode . eglot-ensure)
+         ;(python-mode . py-workaround)
+         (python-mode . highlight-indent-guides-mode))
   :bind (:map python-mode-map
               ("<tab>" . nby/dwim-tab))
   :custom (tab-width nby/python-indentation-size)

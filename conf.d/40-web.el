@@ -31,7 +31,7 @@
          ("\\.wxml\\'" . web-mode)
          ("\\.wxss\\'" . css-mode)
          ("\\.wpy\\'" . web-mode))
-  :after (lsp-mode highlight-indent-guides)
+  :after (highlight-indent-guides)
   :hook (web-mode . highlight-indent-guides-mode)
   :init
   (setq web-mode-markup-indent-offset 2
@@ -45,7 +45,7 @@
 
 (use-package rjsx-mode
   :ensure
-  :after (lsp-mode highlight-indent-guides)
+  :after (highlight-indent-guides)
   :mode ("\\.js\\'" . rjsx-mode)
   :config
   (defun nby/setup-rjsx-flycheck-eslint ()
@@ -54,10 +54,11 @@
     ;;       (concat (projectile-project-root) "/node_modules/.bin/eslint"))
     (with-eval-after-load "lsp-ui-flycheck"
       (flycheck-add-next-checker 'lsp-ui '(error . javascript-eslint))))
-  :hook ((rjsx-mode . lsp)
+  :hook ((rjsx-mode . eglot)
          (rjsx-mode . highlight-indent-guides-mode)
          (rjsx-mode . nby/setup-rjsx-flycheck-eslint))
   :init (setq js-indent-level 2
+              js2-basic-offset 2
               js2r-prefered-quote-type 2
               sgml-basic-offset 2
               js2-strict-missing-semi-warning t
@@ -67,19 +68,18 @@
 (use-package js2-mode
   :disabled
   :ensure
-  :after (lsp-mode)
   :mode ("\\.js\\'" . js2-mode)
-  :hook (js2-mode . lsp)
+  :hook (js2-mode . eglot-ensure)
   :init (setq js-indent-level 2
               js2-strict-missing-semi-warning nil
               js2-missing-semi-one-line-override nil))
 
 (use-package vue-mode
   :disabled
-  :after (lsp-mode highlight-indent-guides)
+  :after (highlight-indent-guides)
   :mode ("\\.vue\\'" . vue-mode)
   :bind (("C-c C-r" . vue-mode-reparse))
-  :hook ((vue-mode . lsp)
+  :hook ((vue-mode . eglot-ensure)
          (vue-mode . highlight-indent-guides-mode))
   :ensure
   :init (setq js-indent-level 2

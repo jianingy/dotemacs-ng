@@ -1,13 +1,13 @@
 (use-package lsp-haskell
+  :disabled
   :ensure t)
 
 (use-package haskell-mode
   :ensure t
   :after (highlight-indent-guides)
-  :requires lsp-haskell
   :bind ("C-c C-c" . haskell-compile)
   :hook ((haskell-interactive-mode . centaur-tabs-local-mode)
-         (haskell-mode . lsp)
+         (haskell-mode . eglot-ensure)
          (haskell-mode . haskell-mode-startup))
   :mode ("\\.hs\\'")
   :init
@@ -24,9 +24,7 @@
   (defun haskell-mode-startup ()
     (setq prettify-symbols-alist haskell-mode-symbols-alist)
     (highlight-indent-guides-mode)
-    (prettify-symbols-mode))
-  :config
-  (setq lsp-prefer-flymake nil))
+    (prettify-symbols-mode)))
 
 (use-package nix-haskell-mode
   :ensure
