@@ -1,3 +1,7 @@
+;; emacs-flymake
+(use-package flymake-haskell-multi
+  :ensure)
+
 (use-package lsp-haskell
   :disabled
   :ensure t)
@@ -7,6 +11,7 @@
   :after (highlight-indent-guides)
   :bind ("C-c C-c" . haskell-compile)
   :hook ((haskell-interactive-mode . centaur-tabs-local-mode)
+         (haskell-mode . flymake-haskell-multi-load)
          (haskell-mode . eglot-ensure)
          (haskell-mode . haskell-mode-startup))
   :mode ("\\.hs\\'")

@@ -14,8 +14,17 @@
 ;; delete trailing whitespace, hope it's safe
 (add-hook 'before-save-hook #'(lambda () (delete-trailing-whitespace)))
 
+;; emacs-flymake
+(use-package flymake
+  :ensure
+  :init
+  :config
+  (setq flymake-run-in-place nil
+        flymake-number-of-errors-to-display 4))
+
 ;; syntax check
 (use-package flycheck
+  :disabled
   :ensure
 ;  :pin melpa-stable
   :commands (flycheck-add-mode)
@@ -24,6 +33,7 @@
 
 (use-package flycheck-pos-tip
   :after flycheck
+  :disabled
   :ensure
   :init (setq flycheck-pos-tip-max-width 100
               flycheck-pos-tip-timeout 30)
