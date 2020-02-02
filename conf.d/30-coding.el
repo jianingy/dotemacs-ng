@@ -264,4 +264,18 @@
   :bind (("C-c i" . highlight-indent-guides-mode)))
 
 
+(use-package eglot
+  :ensure)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; scheme
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package geiser
+  :ensure
+  :bind (("C-c C-c" . geiser-eval-buffer))
+  :config
+  (setq geiser-active-implementations '(racket)))
+
 ;;; ends here
