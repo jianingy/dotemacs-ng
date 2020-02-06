@@ -295,13 +295,13 @@
                 treemacs-follow-mode t
                 treemacs-filewatch-mode t)
   :custom-face
-  (treemacs-root-face ((t (:height 0.8))))
-  (treemacs-file-face ((t (:height 0.8))))
-  (treemacs-directory-face ((t (:height 0.8))))
-  (treemacs-tag-face ((t (:height 0.8))))
-  (treemacs-git-modified-face ((t (:height 0.8))))
-  (treemacs-git-ignored-face ((t (:height 0.8))))
-  (treemacs-git-untrack-face ((t (:height 0.8))))
+  (treemacs-root-face ((t (:height 0.9))))
+  (treemacs-file-face ((t (:height 0.9))))
+  (treemacs-directory-face ((t (:height 0.9))))
+  (treemacs-tag-face ((t (:height 0.9))))
+  (treemacs-git-modified-face ((t (:height 0.9))))
+  (treemacs-git-ignored-face ((t (:height 0.9))))
+  (treemacs-git-untrack-face ((t (:height 0.9))))
   :hook
   (treemacs-mode . hide-mode-line-mode)
   (emacs-startup . treemacs)

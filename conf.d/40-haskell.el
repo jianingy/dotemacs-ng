@@ -9,7 +9,9 @@
 (use-package haskell-mode
   :ensure t
   :after (highlight-indent-guides)
-  :bind ("C-c C-c" . haskell-compile)
+  :bind (("C-c C-c" . haskell-compile)
+         ("C-c C-x C-c" . comment-region)
+         ("C-c C-x C-d" . uncomment-region))
   :hook ((haskell-interactive-mode . centaur-tabs-local-mode)
          (haskell-mode . flymake-haskell-multi-load)
          (haskell-mode . eglot-ensure)
