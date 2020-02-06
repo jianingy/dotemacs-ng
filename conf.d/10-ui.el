@@ -352,8 +352,7 @@
   :diminish
   :bind (("C-c C-r" . ivy-resume))
   :init
-  (setq enable-recursive-minibuffers nil
-        ivy-wrap t
+  (setq ivy-wrap t
         ivy-use-virtual-buffers t
         ivy-count-format "(%d/%d) ")
   (ivy-mode 1))

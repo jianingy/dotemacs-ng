@@ -17,7 +17,7 @@
  kept-new-versions                10
  kept-old-versions                 5
  version-control                   t               ;; use versioned backups
- enable-recursive-minibuffers      t
+ enable-recursive-minibuffers      nil
  create-lockfiles                  nil             ;; dont use file lock
  tramp-default-method              "rsync"         ;; tramp default method
  abbrev-file-name    (concat user-conf-dir "db/abbrev.el")
