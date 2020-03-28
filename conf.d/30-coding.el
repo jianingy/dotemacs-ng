@@ -267,6 +267,13 @@
 (use-package eglot
   :ensure)
 
+(use-package eldoc-box
+  :ensure
+  :after (eglot)
+  :hook
+  (eglot-managed-mode . eldoc-box-hover-mode))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; scheme

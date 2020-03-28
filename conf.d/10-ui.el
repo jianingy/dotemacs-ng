@@ -15,26 +15,30 @@
   ((change-major-mode after-revert ediff-prepare-buffer) . turn-on-solaire-mode)
   (minibuffer-setup . solaire-mode-in-minibuffer)
   :config
-  (remove-hook 'solaire-mode-hook 'solaire-mode-fix-latex-preview-background t))
+  (remove-hook 'solaire-mode-hook 'solaire-mode-fix-latex-preview-background t)
+  (message "Enabling solaire-mode")
+
+  (solaire-global-mode +1))
+
 
 (use-package doom-themes
   :ensure
   :if window-system
-  :after (all-the-icons company nlinum treemacs org)
+  :after (all-the-icons company treemacs org solaire-mode)
   :config
   (setq doom-themes-treemacs-enable-variable-pitch nil)
   (message "Loading theme dracula")
   (load-theme 'doom-dracula t)
   (doom-themes-org-config)
   (doom-themes-treemacs-config)
-  (solaire-mode-swap-bg)
-  (solaire-global-mode +1))
+  (solaire-mode-swap-bg))
+
 
 (use-package dracula-theme
   :ensure
   :disabled
   :if window-system
-  :after (company nlinum)
+  :after (company)
   :custom-face
   (company-tooltip ((t (:inherit default :foreground "white smoke" :background "#333"))))
   (company-scrollbar-bg ((t (:background "#333"))))
@@ -45,7 +49,7 @@
   (company-tooltip-common ((t (:foreground "orange"))))
   (company-tooltip-common-selection ((t (:foreground "black"))))
   (doom-modeline-inactive-bar ((t (:background "#373844"))))
-  (nlinum-current-line ((t (:foreground "orange" :slant italic :weight bold))))
+  ; (nlinum-current-line ((t (:foreground "orange" :slant italic :weight bold))))
   :init
   (add-hook 'buffer-list-update-hook 'nby/display-header-as-margin)
   (add-hook 'emacs-startup-hook  'nby/display-header-as-margin)
@@ -235,11 +239,13 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; nlinum-mode: display line number
+;; display line number
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; use native line-number mode
 (use-package nlinum
+  :disabled
   :ensure
   :config
   (setq nlinum-format "  %4d "
@@ -251,7 +257,10 @@
                                         ; Fix disappearing line numbers in nlinum
 (use-package nlinum-hl
   :after nlinum
+  :disabled
   :ensure)
+
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
