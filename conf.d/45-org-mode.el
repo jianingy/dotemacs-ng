@@ -59,6 +59,7 @@
   :hook (org-mode . org-bullets-mode))
 
 (use-package ox-s5
+  :disabled
   :ensure org-plus-contrib)
 
 (use-package mixed-pitch

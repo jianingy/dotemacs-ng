@@ -45,7 +45,7 @@
   (defun nby/python-mode-init ()
     (nby/venv-projectile-auto-workon)
     (highlight-indent-guides-mode)
-    (eglot-ensure))
+    (lsp))
   :hook (python-mode . nby/python-mode-init)
   :bind (:map python-mode-map
               ("<tab>" . nby/dwim-tab))

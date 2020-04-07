@@ -245,6 +245,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package jupyter
+  :disabled
   :ensure)
 
 
@@ -265,6 +266,7 @@
 
 
 (use-package eglot
+  :disabled
   :ensure)
 
 (use-package eldoc-box
