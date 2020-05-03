@@ -38,7 +38,7 @@
      ("SUSPEND" :foreground "firebrick")
      ("VERIFIED" :foreground "lime green" :weight normal)))
   :config
-  (require 'org-tempo)
+  ;(require 'org-tempo)
   (require 'ob-python)
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)

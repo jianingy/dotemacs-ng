@@ -12,7 +12,7 @@
     (error (progn (message "File %s cannot be loaded" filename) nil))))
 
 (defvar nby/startup-timestamp (float-time))
-(defvar user-home-dir (getenv "HOME"))
+(defvar user-home-dir (expand-file-name "~"))
 (defvar user-conf-dir user-emacs-directory)
 (defvar user-info-file
   (nby/find-local-config '(".userinfo.el" "_userinfo.el")))

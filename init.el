@@ -15,7 +15,7 @@
                                  ("melpa-stable" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa-stable/")
                                  ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
                                  ("org" . "http://orgmode.org/elpa/")))
-
+(when (< emacs-major-version 27) (package-initialize))
 (require 'package)
 (setq package-enable-at-startup nil)
 ; (package-initialize)
