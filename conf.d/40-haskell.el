@@ -3,6 +3,9 @@
 
 (use-package lsp-haskell
   :ensure
+  :config
+  (setq lsp-haskell-process-path-hie "ghcide")
+  (setq lsp-haskell-process-args-hie '())
   :hook
   (haskell-mode . lsp)
   (haskell-mode . lsp-ui-mode))
@@ -58,3 +61,7 @@
     (setq prettify-symbols-alist haskell-mode-symbols-alist)
     (highlight-indent-guides-mode)
     (prettify-symbols-mode)))
+
+
+(use-package purescript-mode
+  :ensure)
